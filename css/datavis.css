@@ -1,9 +1,12 @@
 ul{
+    position: fixed;
+    top:0;
+    width:100%;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color:black;
 }
 
 li{
@@ -16,6 +19,14 @@ li a{
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+}
+
+li a:hover:not(.active){
+    background-color:#111;
+}
+
+.active{
+    background-color:indigo;
 }
 
 h1{
