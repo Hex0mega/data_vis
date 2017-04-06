@@ -1,3 +1,4 @@
+
 ul{
     position: fixed;
     top:0;
@@ -23,17 +24,9 @@ li a{
 }
 
 li a:hover:not(.active){
-    background-color:#111;
-}
-
-.active{
     background-color:indigo;
-}
-
-h1{
-    text-align: left;
-    color:black;
-    font: normal 40pt "Arial Black";
+    color:white;
+    text-decoration: none;
 }
 
 .container{

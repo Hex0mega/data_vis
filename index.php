@@ -4,7 +4,8 @@
 <?php include_once($_SERVER["DOCUMENT_ROOT"]."/nav/nav.php");?>
 
   <head>
-    <title> Data Vis </title>
+    <link href="/css/page.css" rel=stylesheet type="text/css">
+    <title> Data Wiz </title>
   </head>
 
   <body>
@@ -12,7 +13,7 @@
       <h1>Welcome!</h1>
       <p class="text-justify">
         Welcome to DATA WIZ.
-        <br> This is a space that I use to showcase my portfolio.
+        <br> The portfolio showcase for the work of Vlad Soukhovei
         <br>
       </p>
     </div>

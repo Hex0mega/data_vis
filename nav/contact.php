@@ -5,11 +5,21 @@
   <html>
 
   <head>
+    <link href="/css/page.css" rel=stylesheet type="text/css">
     <title>Contact</title>
   </head>
 
   <body>
-    <h1>Contact</h1>
+    <div class="container">
+      <h1>Contact</h1>
+      <p>
+        Vlad Soukhovei
+        <br> 
+        vlsu8752@colorado.edu
+        <br>
+        (303)-960-1161
+      </p>
+    </div>
   </body>
 
   </html>

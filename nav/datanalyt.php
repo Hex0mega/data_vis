@@ -5,11 +5,16 @@
   <html>
 
   <head>
-    <title>Data Analytics</title>
+     <link href="/css/page.css" rel=stylesheet type="text/css">
+    <title>Projects</title>
   </head>
 
   <body>
-    <h1>Data Analytics</h1>
+    <div class="container">
+      <p class="text-justify">
+        <h1>Projects</h1>
+      </p>
+    </div>
   </body>
 
   </html>

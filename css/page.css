@@ -1,0 +1,19 @@
+h1{
+    text-align: left;
+    color:black;
+    font: normal 60pt "Helvetica";
+}
+
+h2{
+    text-align: left;
+    color:black;
+    font: normal 45pt "Helvetica";
+}
+
+p{
+    font: normal 24pt "Helvetica";
+}
+
+li{
+    display:list-item;
+}
