@@ -1,17 +1,22 @@
 h1{
     text-align: left;
-    color:black;
-    font: normal 60pt "Helvetica";
+    color:white;
+    font: normal 55pt "Ubuntu";
+    background-color: black
 }
 
 h2{
     text-align: left;
     color:black;
-    font: normal 45pt "Helvetica";
+    font: normal 45pt "Ubuntu";
 }
 
 p{
-    font: normal 24pt "Helvetica";
+    font: normal 24pt "Ubuntu";
+}
+
+a{
+    font: normal 24pt "Ubuntu";
 }
 
 li{

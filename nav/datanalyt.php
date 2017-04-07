@@ -6,13 +6,13 @@
 
   <head>
      <link href="/css/page.css" rel=stylesheet type="text/css">
-    <title>Projects</title>
+    <title>PROJECTS</title>
   </head>
 
   <body>
     <div class="container">
       <p class="text-justify">
-        <h1>Projects</h1>
+        <h1>PROJECTS</h1>
       </p>
     </div>
   </body>

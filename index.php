@@ -10,7 +10,7 @@
 
   <body>
     <div class="container">
-      <h1>Welcome!</h1>
+      <h1>WELCOME!</h1>
       <p class="text-justify">
         Welcome to DATA WIZ.
         <br> The portfolio showcase for the work of Vlad Soukhovei

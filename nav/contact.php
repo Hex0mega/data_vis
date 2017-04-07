@@ -6,18 +6,18 @@
 
   <head>
     <link href="/css/page.css" rel=stylesheet type="text/css">
-    <title>Contact</title>
+    <title>CONTACT</title>
   </head>
 
   <body>
     <div class="container">
-      <h1>Contact</h1>
+      <h1>CONTACT</h1>
       <p>
         Vlad Soukhovei
         <br> 
-        vlsu8752@colorado.edu
+        <strong>E-mail:</strong> vlsu8752@colorado.edu
         <br>
-        (303)-960-1161
+        <strong>Phone Number:</strong> (303)-960-1161
       </p>
     </div>
   </body>

@@ -6,16 +6,16 @@
 
   <head>
     <link href="/css/page.css" rel=stylesheet type="text/css">
-    <title>About</title>
+    <title>ABOUT</title>
   </head>
 
   <body>
     <div class="container">
-      <h1>About</h1>
+      <h1>ABOUT</h1>
       <h2>Bio</h2>
       <p> Software engineer at the Gates Corporation. </p>
       <h2>Resume</h2>
-      <a href="$_SERVER["DOCUMENT_ROOT"]/documents/Vladislav Soukhovei Resume 2017.pdf">Resume 2017</a>
+      <a href="<?php echo $_SERVER['DOCUMENT_ROOT'].'/documents/Vladislav Soukhovei Resume 2017.pdf'?>">Resume 2017</a>
       <h2>Interests</h2>
       <div>
         <ul>
