@@ -12,8 +12,8 @@
       <ul>
         <li class="selected"><a href="/index.php">DATA WIZ</a></li>
         <li><a href="/nav/datanalyt.php">Projects</a></li>
-        <li><a href="/nav/contact.php">Contact</a></li>
         <li><a href="/nav/about.php">About</a></li>
+        <li><a href="/nav/contact.php">Contact</a></li>
       </ul>
     </nav>
   </div>

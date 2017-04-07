@@ -6,7 +6,7 @@
 
   <head>
     <link href="/css/page.css" rel=stylesheet type="text/css">
-    <title>ABOUT</title>
+    <title>About</title>
   </head>
 
   <body>
@@ -14,15 +14,16 @@
       <h1>ABOUT</h1>
       <h2>Bio</h2>
       <p> Software engineer at the Gates Corporation. </p>
+      <h2>Interests</h2>
+      <ul class="interests">
+        <li class="interests">Data Visualization</li>
+        <li class="interests">Numerical Computation</li>
+        <li class="interests">Scientific Computing</li>
+      </ul>
       <h2>Resume</h2>
       <a href="<?php echo $_SERVER['DOCUMENT_ROOT'].'/documents/Vladislav Soukhovei Resume 2017.pdf'?>">Resume 2017</a>
-      <h2>Interests</h2>
-      <div>
-        <ul>
-          <li>Data Visualization</li>
-          <li>Numerical Computation</li>
-        </ul>
-      </div>
+      <h2>GitHub</h2>
+      <a href="https://github.com/Hex0mega">Hex0mega</a>
     </div>
   </body>
 

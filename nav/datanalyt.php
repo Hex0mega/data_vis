@@ -6,7 +6,7 @@
 
   <head>
      <link href="/css/page.css" rel=stylesheet type="text/css">
-    <title>PROJECTS</title>
+    <title>Projects</title>
   </head>
 
   <body>

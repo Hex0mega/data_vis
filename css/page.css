@@ -1,24 +1,41 @@
 h1{
     text-align: left;
     color:white;
-    font: normal 55pt "Ubuntu";
+    font: normal 35pt "Ubuntu";
     background-color: black
 }
 
 h2{
     text-align: left;
     color:black;
-    font: normal 45pt "Ubuntu";
+    font: normal 35pt "Ubuntu";
 }
 
 p{
     font: normal 24pt "Ubuntu";
+    margin-left: 1em;
 }
 
 a{
     font: normal 24pt "Ubuntu";
+    margin-left: 1em;
 }
 
-li{
+li.interests{
     display:list-item;
+    list-style-type: disc;
+    width: 100%;
+    margin-left: 1em;
+    padding: 5px;
+    font: normal 24pt "Ubuntu";
+}
+
+ul.interests{
+    display: list-item;
+    position: relative;
+    background-color: white;
+    list-style-type: disc outside none;
+    width: 100%;
+    margin-left: 1em;
+    padding: 5px;
 }
