@@ -1,23 +1,18 @@
 h1{
     text-align: left;
     color:white;
-    font: normal 35pt "Ubuntu";
+    font: normal 24pt "Ubuntu";
     background-color: black
 }
 
 h2{
     text-align: left;
     color:black;
-    font: normal 35pt "Ubuntu";
+    font: normal 24pt "Ubuntu";
 }
 
-p{
-    font: normal 24pt "Ubuntu";
-    margin-left: 1em;
-}
-
-a{
-    font: normal 24pt "Ubuntu";
+p,a{
+    font: normal 16pt "Ubuntu";
     margin-left: 1em;
 }
 
@@ -27,7 +22,7 @@ li.interests{
     width: 100%;
     margin-left: 1em;
     padding: 5px;
-    font: normal 24pt "Ubuntu";
+    font: normal 16pt "Ubuntu";
 }
 
 ul.interests{
