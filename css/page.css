@@ -34,3 +34,9 @@ ul.interests{
     margin-left: 1em;
     padding: 5px;
 }
+
+.line{
+    fill:none;
+    stroke:steelblue;
+    stroke-width:2px;
+}
