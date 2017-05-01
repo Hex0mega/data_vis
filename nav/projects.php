@@ -17,8 +17,7 @@
         <h1>PROJECTS</h1>
       </p>
     </div>
+    <div id="chart" align="center"></div>
   </body>
-
-  <svg width="960" height="500"></svg>
 
   </html>
