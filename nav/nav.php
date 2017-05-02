@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <link href="/css/nav.css" rel=stylesheet type="text/css">
   <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel=stylesheet>

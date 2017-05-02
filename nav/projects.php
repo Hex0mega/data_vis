@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 
-<?php include_once($_SERVER["DOCUMENT_ROOT"]."/nav/nav.php"); ?>
+<?php
+include_once($_SERVER["DOCUMENT_ROOT"]."/nav/nav.php");
+?>
 
   <html>
 

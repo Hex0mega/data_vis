@@ -1,3 +1,22 @@
+//helper functions
+var HttpClient = function HttpClient() {
+    this.get = function (aUrl, aCallback) {
+        var anHttpRequest = new XMLHttpRequest();
+        anHttpRequest.onreadystatechange = function () {
+            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                aCallback(anHttpRequest.responseText);
+        }
+
+        anHttpRequest.open("GET", aUrl, true);
+        anHttpRequest.setRequestHeader('Access-Control-Allow-Origin', 'http//localhost:8000')
+        anHttpRequest.setRequestHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS,DELETE,PUT,HEAD');
+        // anHttpRequest.setRequestHeader('Access-Control-Allow-Headers', 'Origin, X-Request-With, Content-Type, Accept');
+        // anHttpRequest.setRequestHeader('Access-Control-Max-Age', '1728000');
+        // anHttpRequest.withCredentials = false;
+
+        anHttpRequest.send(null);
+    }
+}
 
 var DateFormat = function DateFormat(date) {
     var day = date.getDate();
@@ -7,48 +26,71 @@ var DateFormat = function DateFormat(date) {
     return year + '-' + month + '-' + day;
 }
 
-var FormatUrl = function FormatUrl(stock, epsDate, daysBefore, daysAfter, frequency) {
+var FormatQuandlUrl = function FormatQuandlUrl(stock, epsDate, daysBefore, daysAfter, order) {
 
     var startDate = new Date(epsDate);
     startDate.setDate(startDate.getDate() - DAYS_BEFORE);
     var endDate = new Date(epsDate);
     endDate.setDate(endDate.getDate() + DAYS_AFTER);
 
-    var order = 'asc';
+    var token = 'Hwre8eap-C9y6Yuofwn9'
 
     var url = 'https://www.quandl.com/api/v3/datasets/WIKI/' + stock + '/data.json?' + 'start_date=' + DateFormat(startDate) +
-        '&end_date=' + DateFormat(endDate) + '&order=' + order + '&collapse=' + frequency +
-        '&api_key=Hwre8eap-C9y6Yuofwn9';
+        '&end_date=' + DateFormat(endDate) + '&order=' + order +
+        '&api_key=' + token;
 
     return url;
 }
 
-//TODO: Make these settings user provided
-var stock = 'AAPL';
-var DAYS_BEFORE = 7;
-var DAYS_AFTER = 3;
-var frequency = 'hourly'
-//TODO: Needs to be user provided or pulled from other source(e.g. ) that has all epsDates
-var epsDate = new Date(2010, 10, 18);
-var url = FormatUrl(stock, epsDate, DAYS_BEFORE, DAYS_AFTER, frequency)
+var FormatSIUrl = function FormatSIUrl(stock, epsDate, daysBefore, daysAfter, order) {
 
-d3.request(url, function (error, data) {
-    if (error) return console.warn(error);
-    graph(data);
-});
+    var url = 'https://www.streetinsider.com/dr/eps-ticker.php?q=' + stock;
+
+    return url;
+}
+
+//TODO: Make these settings user accessible
+var stock = 'AAPL';
+
+//TODO: Needs to be pulled from other source(e.g. ) that has all epsDates
+var epsDate1 = new Date(2010, 10, 18);
+order = 'asc';
+var DAYS_BEFORE = 10;
+var DAYS_AFTER = 10;
+var qUrl = FormatQuandlUrl(stock, epsDate1, DAYS_BEFORE, DAYS_AFTER, order)
+var siUrl = FormatSIUrl(stock);
+
+var client = new HttpClient();
+client.get(siUrl,
+    function (response) {
+        d3.json(JSON.parse(response), function (error, data) {
+            if (error) return console.warn(error);
+            graph(data);
+        });
+    });
 
 //d3 stuff
-function graph(data) {
-    var dParse = JSON.parse(data.response);
-    data1 = dParse.dataset_data.data
+// d3.request(siUrl, function (error, data) {
+//     if (error) return console.warn(error);
+//     graphAll(data);
+// })
+
+d3.request(qUrl, function (error, data) {
+    if (error) return console.warn(error);
+    graphAll(data);
+});
+
+var parseTime = d3.timeParse("%Y-%m-%d");
+
+//graphs open/close/high/low for one EPS announcement date
+function graphAll(data) {
+    var data1 = JSON.parse(data.response).dataset_data.data;
 
     var dates = [];
     var opens = [];
     var highs = [];
     var lows = [];
     var closes = [];
-
-    var parseTime = d3.timeParse("%Y-%m-%d");
 
     data1.forEach(function (d) {
         dates.push(parseTime(d[0]));
@@ -209,7 +251,7 @@ function graph(data) {
                     .attr("stroke", function (_, i) { return color_scale(i); });
 
                 data_lines.append("text")
-                    .datum(function (d, i) { return { name: datasets[i].label, final: d[d.length-1] }; })
+                    .datum(function (d, i) { return { name: datasets[i].label, final: d[d.length - 1] }; })
                     .attr("transform", function (d) {
                         return ("translate(" + x_scale(d.final[0]) + "," +
                             y_scale(d.final[1]) + ")");
@@ -248,6 +290,13 @@ function graph(data) {
 
         return chart;
     }
+
+    //graphs all close data for a given stock for all known EPS dates
+    //x-axis is standarized as days from EPS announcement date
+    function graphClose(data) {
+        var blah;
+    }
+
 
 }
 
