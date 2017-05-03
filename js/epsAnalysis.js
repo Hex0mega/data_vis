@@ -8,12 +8,7 @@ var HttpClient = function HttpClient() {
         }
 
         anHttpRequest.open("GET", aUrl, true);
-        anHttpRequest.setRequestHeader('Access-Control-Allow-Origin', 'http//localhost:8000')
-        anHttpRequest.setRequestHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS,DELETE,PUT,HEAD');
-        // anHttpRequest.setRequestHeader('Access-Control-Allow-Headers', 'Origin, X-Request-With, Content-Type, Accept');
-        // anHttpRequest.setRequestHeader('Access-Control-Max-Age', '1728000');
-        // anHttpRequest.withCredentials = false;
-
+        // anHttpRequest.setRequestHeader('Access-Control-Allow-Origin', '*')
         anHttpRequest.send(null);
     }
 }
@@ -50,24 +45,24 @@ var FormatSIUrl = function FormatSIUrl(stock, epsDate, daysBefore, daysAfter, or
 }
 
 //TODO: Make these settings user accessible
-var stock = 'AAPL';
+var stock = 'V';
 
 //TODO: Needs to be pulled from other source(e.g. ) that has all epsDates
 var epsDate1 = new Date(2010, 10, 18);
 order = 'asc';
-var DAYS_BEFORE = 10;
-var DAYS_AFTER = 10;
+var DAYS_BEFORE = 365;
+var DAYS_AFTER = 365;
 var qUrl = FormatQuandlUrl(stock, epsDate1, DAYS_BEFORE, DAYS_AFTER, order)
 var siUrl = FormatSIUrl(stock);
 
-var client = new HttpClient();
-client.get(siUrl,
-    function (response) {
-        d3.json(JSON.parse(response), function (error, data) {
-            if (error) return console.warn(error);
-            graph(data);
-        });
-    });
+// var client = new HttpClient();
+// client.get(fcUrl,
+//     function (response) {
+//         d3.json(JSON.parse(response), function (error, data) {
+//             if (error) return console.warn(error);
+//             graphAll(data);
+//         });
+//     });
 
 //d3 stuff
 // d3.request(siUrl, function (error, data) {
@@ -94,29 +89,33 @@ function graphAll(data) {
 
     data1.forEach(function (d) {
         dates.push(parseTime(d[0]));
-        opens.push(d[1]);
-        highs.push(d[2]);
-        lows.push(d[3]);
-        closes.push(d[4]);
+        // opens.push(d[1]);
+        // highs.push(d[2]);
+        // lows.push(d[3]);
+        // closes.push(d[4]);
+        opens.push(d[8]);
+        highs.push(d[9]);
+        lows.push(d[10]);
+        closes.push(d[11]);
     });
 
     data2 = [{
-        label: "Closes",
+        label: " Adj. Close",
         x: dates,
         y: closes
     },
     {
-        label: "Opens",
+        label: "Adj. Open",
         x: dates,
         y: opens
     },
     {
-        label: "Highs",
+        label: "Adj. High",
         x: dates,
         y: highs
     },
     {
-        label: "Lows",
+        label: "Adj. Low",
         x: dates,
         y: lows
     }
@@ -223,7 +222,7 @@ function graphAll(data) {
                 svg.append("g")
                     .attr("class", "x axis")
                     .attr("transform", "translate(0," + innerheight + ")")
-                    .call(x_axis.tickFormat(d3.timeFormat("%d-%m-%Y")))
+                    .call(x_axis.tickFormat(d3.timeFormat("%m-%d-%Y")))
                     .append("text")
                     .attr("dy", "-.71em")
                     .attr("x", innerwidth)
