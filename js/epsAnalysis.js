@@ -21,14 +21,15 @@ var DateFormat = function DateFormat(date) {
     return year + '-' + month + '-' + day;
 }
 
-var FormatQuandlUrl = function FormatQuandlUrl(stock, epsDate, daysBefore, daysAfter, order) {
+var FormatQuandlUrl = function FormatQuandlUrl(stock, epsDate, daysBefore, daysAfter) {
 
     var startDate = new Date(epsDate);
     startDate.setDate(startDate.getDate() - DAYS_BEFORE);
     var endDate = new Date(epsDate);
     endDate.setDate(endDate.getDate() + DAYS_AFTER);
 
-    var token = 'Hwre8eap-C9y6Yuofwn9'
+    var token = 'Hwre8eap-C9y6Yuofwn9';
+    var order = 'asc';
 
     var url = 'https://www.quandl.com/api/v3/datasets/WIKI/' + stock + '/data.json?' + 'start_date=' + DateFormat(startDate) +
         '&end_date=' + DateFormat(endDate) + '&order=' + order +
@@ -46,13 +47,12 @@ var FormatSIUrl = function FormatSIUrl(stock, epsDate, daysBefore, daysAfter, or
 
 //TODO: Make these settings user accessible
 var stock = 'V';
+var DAYS_BEFORE = 365;
+var DAYS_AFTER = 365;
 
 //TODO: Needs to be pulled from other source(e.g. ) that has all epsDates
 var epsDate1 = new Date(2010, 10, 18);
-order = 'asc';
-var DAYS_BEFORE = 365;
-var DAYS_AFTER = 365;
-var qUrl = FormatQuandlUrl(stock, epsDate1, DAYS_BEFORE, DAYS_AFTER, order)
+var qUrl = FormatQuandlUrl(stock, epsDate1, DAYS_BEFORE, DAYS_AFTER)
 var siUrl = FormatSIUrl(stock);
 
 // var client = new HttpClient();
@@ -235,7 +235,6 @@ function graphAll(data) {
                 //     .text(function (d) { return d.name; });
 
                 //d3-legend.js - susie lu
-
                 var labels = [];
                 var colors = [];
                 datasets.forEach(function (d, i) {
@@ -262,7 +261,7 @@ function graphAll(data) {
 
                 svg.select(".legendOrdinal")
                     .call(legendOrdinal);
-                    
+
             });
         }
 
