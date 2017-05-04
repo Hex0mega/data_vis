@@ -122,7 +122,7 @@ function graphAll(data) {
     ];
 
     var xy_chart = d3_xy_chart()
-        .width(960)
+        .width(970)
         .height(500)
         .xlabel("X Axis")
         .ylabel("Y Axis");
@@ -155,29 +155,12 @@ function graphAll(data) {
                     .domain([d3.min(datasets, function (d) { return d3.min(d.y); }),
                     d3.max(datasets, function (d) { return d3.max(d.y); })]);
 
-                // var color_scale = d3.scale.category10()
-                //     .domain(d3.range(datasets.length));
-
                 var color_scale = d3.scaleOrdinal(d3.schemeCategory10)
                     .domain(d3.range(datasets.length));
 
-                // var x_axis = d3.svg.axis()
-                //     .scale(x_scale)
-                //     .orient("bottom");
-
                 var x_axis = d3.axisBottom(x_scale)
 
-                // var y_axis = d3.svg.axis()
-                //     .scale(y_scale)
-                //     .orient("left");
-
                 var y_axis = d3.axisLeft(y_scale)
-
-                // var x_grid = d3.svg.axis()
-                //     .scale(x_scale)
-                //     .orient("bottom")
-                //     .tickSize(-innerheight)
-                //     .tickFormat("");
 
                 var x_grid = d3.axisBottom(x_scale)
                     .tickSize(-innerheight)
@@ -187,19 +170,9 @@ function graphAll(data) {
                     .tickSize(-innerwidth)
                     .tickFormat("");
 
-                // var draw_line = d3.svg.line
-                //     .interpolate("basis")
-                //     .x(function (d) { return x_scale(d[0]); })
-                //     .y(function (d) { return y_scale(d[1]); });
-
                 var draw_line = d3.line()
                     .x(function (d) { return x_scale(d[0]); })
                     .y(function (d) { return y_scale(d[1]); });
-
-                // var draw_line = d3.line()
-                //     .interpolate("basis")
-                //     .x(function (d) { return x_scale(d[0]); })
-                //     .y(function (d) { return y_scale(d[1]); });
 
                 var svg = d3.select(this)
                     .attr("width", width)
@@ -249,17 +222,47 @@ function graphAll(data) {
                     .attr("d", function (d) { return draw_line(d); })
                     .attr("stroke", function (_, i) { return color_scale(i); });
 
-                data_lines.append("text")
-                    .datum(function (d, i) { return { name: datasets[i].label, final: d[d.length - 1] }; })
-                    .attr("transform", function (d) {
-                        return ("translate(" + x_scale(d.final[0]) + "," +
-                            y_scale(d.final[1]) + ")");
-                    })
-                    .attr("x", 3)
-                    .attr("dy", ".35em")
-                    .attr("fill", function (_, i) { return color_scale(i); })
-                    .text(function (d) { return d.name; });
+                //d[d.length - 1] - "legend" that came with tutorial    
+                // data_lines.append("text")
+                //     .datum(function (d, i) { return { name: datasets[i].label, final: d[d.length - 1] }; })
+                //     .attr("transform", function (d) {
+                //         return ("translate(" + x_scale(d.final[0]) + "," +
+                //             y_scale(d.final[1]) + ")");
+                //     })
+                //     .attr("x", 3)
+                //     .attr("dy", ".35em")
+                //     .attr("fill", function (_, i) { return color_scale(i); })
+                //     .text(function (d) { return d.name; });
 
+                //d3-legend.js - susie lu
+
+                var labels = [];
+                var colors = [];
+                datasets.forEach(function (d, i) {
+                    labels.push(d.label);
+                    colors.push(color_scale(i))
+                });
+
+                var ordinal = d3.scaleOrdinal()
+                    .domain(labels)
+                    .range(colors);
+
+                var svg = d3.select("svg");
+
+                svg.append("g")
+                    .attr("class", "legendOrdinal")
+                    .attr("transform", "translate(900,25)");
+
+                var legendOrdinal = d3.legendColor()
+                    .shape("path", d3.symbol().type(d3.symbolSquare).size(150)())
+                    .shapePadding(10)
+                    //use cellFilter to hide the "e" cell
+                    .cellFilter(function (d) { return d.label !== "e" })
+                    .scale(ordinal);
+
+                svg.select(".legendOrdinal")
+                    .call(legendOrdinal);
+                    
             });
         }
 
