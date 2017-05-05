@@ -15,7 +15,8 @@ var HttpClient = function HttpClient() {
 
 var DateFormat = function DateFormat(date) {
     var day = date.getDate();
-    var month = date.getMonth();
+    //months in javascript are 0-11
+    var month = date.getMonth() + 1;
     var year = date.getFullYear();
 
     return year + '-' + month + '-' + day;
@@ -45,14 +46,20 @@ var FormatSIUrl = function FormatSIUrl(stock, epsDate, daysBefore, daysAfter, or
     return url;
 }
 
-//TODO: Make these settings user accessible
-var stock = 'V';
-var DAYS_BEFORE = 365;
-var DAYS_AFTER = 365;
+//TODO: Implement data binding for EPS Date, stock, and days before, days after
+var year = 2010;
+var month = 10;
+var day = 20;
+var epsDate = new Date(2010, month-1, day);
+var stock = 'NVDA';
+function getStock() { return stock; }
+function setStock(newStock) { stock = newStock; }
+var DAYS_BEFORE = 10;
+var DAYS_AFTER = 10;
 
 //TODO: Needs to be pulled from other source(e.g. ) that has all epsDates
-var epsDate1 = new Date(2010, 10, 18);
-var qUrl = FormatQuandlUrl(stock, epsDate1, DAYS_BEFORE, DAYS_AFTER)
+//October 18th, 2010 - months are 0-11
+var qUrl = FormatQuandlUrl(stock, epsDate, DAYS_BEFORE, DAYS_AFTER);
 var siUrl = FormatSIUrl(stock);
 
 // var client = new HttpClient();
@@ -80,24 +87,30 @@ var parseTime = d3.timeParse("%Y-%m-%d");
 //graphs open/close/high/low for one EPS announcement date
 function graphAll(data) {
     var data1 = JSON.parse(data.response).dataset_data.data;
-
     var dates = [];
     var opens = [];
     var highs = [];
     var lows = [];
     var closes = [];
+    var epsDates = [];
 
     data1.forEach(function (d) {
+        epsDates.push(window.epsDate);
         dates.push(parseTime(d[0]));
+        //unadjusted
         // opens.push(d[1]);
         // highs.push(d[2]);
         // lows.push(d[3]);
         // closes.push(d[4]);
+        //adjusted
         opens.push(d[8]);
         highs.push(d[9]);
         lows.push(d[10]);
         closes.push(d[11]);
     });
+    var eps = [];
+    eps.push(Math.max.apply(Math, highs));
+    eps.push(Math.min.apply(Math, lows));
 
     data2 = [{
         label: " Adj. Close",
@@ -118,6 +131,11 @@ function graphAll(data) {
         label: "Adj. Low",
         x: dates,
         y: lows
+    },
+    {
+        label: "EPS Date",
+        x: epsDates,
+        y: eps
     }
     ];
 
@@ -158,6 +176,10 @@ function graphAll(data) {
                 var color_scale = d3.scaleOrdinal(d3.schemeCategory10)
                     .domain(d3.range(datasets.length));
 
+                var line_thickness = ["2px", "2px", "2px", "2px", "5px"];
+
+                var dash_array = [0, 0, 0, 0, 2];
+
                 var x_axis = d3.axisBottom(x_scale)
 
                 var y_axis = d3.axisLeft(y_scale)
@@ -190,9 +212,6 @@ function graphAll(data) {
                     .call(y_grid);
 
                 svg.append("g")
-                    .attr("data-legend", function (d) { return d.name });
-
-                svg.append("g")
                     .attr("class", "x axis")
                     .attr("transform", "translate(0," + innerheight + ")")
                     .call(x_axis.tickFormat(d3.timeFormat("%m-%d-%Y")))
@@ -220,19 +239,9 @@ function graphAll(data) {
                 data_lines.append("path")
                     .attr("class", "line")
                     .attr("d", function (d) { return draw_line(d); })
-                    .attr("stroke", function (_, i) { return color_scale(i); });
-
-                //d[d.length - 1] - "legend" that came with tutorial    
-                // data_lines.append("text")
-                //     .datum(function (d, i) { return { name: datasets[i].label, final: d[d.length - 1] }; })
-                //     .attr("transform", function (d) {
-                //         return ("translate(" + x_scale(d.final[0]) + "," +
-                //             y_scale(d.final[1]) + ")");
-                //     })
-                //     .attr("x", 3)
-                //     .attr("dy", ".35em")
-                //     .attr("fill", function (_, i) { return color_scale(i); })
-                //     .text(function (d) { return d.name; });
+                    .attr("stroke", function (_, i) { return color_scale(i); })
+                    .attr("stroke-width", function (_, i) { return line_thickness[i] })
+                    .attr("stroke-dasharray", function(_,i){ return dash_array[i]});
 
                 //d3-legend.js - susie lu
                 var labels = [];

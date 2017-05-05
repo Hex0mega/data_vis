@@ -7,7 +7,6 @@
   <head>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script type="text/javascript" src="../node_modules/d3-svg-legend/d3-legend.js"></script>
-    <script type="text/javascript" src="../js/d3.legend.js"></script>
     <script type="text/javascript" src="../js/epsAnalysis.js"></script>
     <link href="/css/page.css" rel=stylesheet type="text/css">
     <link href="/css/projects.css" rel=stylesheet type="text/css">
@@ -17,7 +16,7 @@
   <body>
     <div class="container">
       <p class="text-justify">
-        <h1>PROJECTS</h1>
+        <h1>EPS ANNOUNCEMENT DATE</h1>
       </p>
     </div>
 
