@@ -25,14 +25,14 @@ var DateFormat = function DateFormat(date) {
 var FormatQuandlUrl = function FormatQuandlUrl(stock, epsDate, daysBefore, daysAfter) {
 
     var startDate = new Date(epsDate);
-    startDate.setDate(startDate.getDate() - DAYS_BEFORE);
+    startDate.setDate(startDate.getDate() - daysBefore());
     var endDate = new Date(epsDate);
-    endDate.setDate(endDate.getDate() + DAYS_AFTER);
+    endDate.setDate(endDate.getDate() + daysAfter());
 
     var token = 'Hwre8eap-C9y6Yuofwn9';
     var order = 'asc';
 
-    var url = 'https://www.quandl.com/api/v3/datasets/WIKI/' + stock + '/data.json?' + 'start_date=' + DateFormat(startDate) +
+    var url = 'https://www.quandl.com/api/v3/datasets/WIKI/' + stock() + '/data.json?' + 'start_date=' + DateFormat(startDate) +
         '&end_date=' + DateFormat(endDate) + '&order=' + order +
         '&api_key=' + token;
 
@@ -46,20 +46,68 @@ var FormatSIUrl = function FormatSIUrl(stock, epsDate, daysBefore, daysAfter, or
     return url;
 }
 
+//data binding
+function observable(value) {
+    var listeners = [];
+
+    function notify(newValue) {
+        listeners.forEach(function (listener) { listener(newValue); });
+    }
+
+    function accessor(newValue) {
+        if (arguments.length && newValue !== value) {
+            value = newValue;
+            notify(newValue);
+        }
+        return value;
+    }
+
+    accessor.subscribe = function (listener) { listeners.push(listener); };
+
+    return accessor;
+}
+
+function bindValue(input, observable) {
+    var initial = observable();
+    input.value = initial;
+    observable.subscribe(function () { input.value = observable(); });
+
+    var converter = function (v) { return v; }
+    if (typeof initial == 'number') {
+        converter = function (n) { return isNaN(n = parseFloat(n)) ? 0 : n; };
+    }
+
+    input.addEventListener('input', function () {
+        observable(converter(input.value));
+    });
+}
+
+var stockText = document.getElementById('inputs').querySelector('#stock');
+var beforeEPSText = document.getElementById('inputs').querySelector('#beforeEPS');
+var afterEPSText = document.getElementById('inputs').querySelector('#afterEPS');
+
+var stock = observable('AAPL');
+var daysBeforeEPS = observable(10);
+var daysAfterEPS = observable(10);
+
+bindValue(stockText, stock);
+bindValue(beforeEPSText, daysBeforeEPS);
+bindValue(afterEPSText, daysAfterEPS);
+
 //TODO: Implement data binding for EPS Date, stock, and days before, days after
 var year = 2010;
 var month = 10;
 var day = 20;
-var epsDate = new Date(2010, month-1, day);
-var stock = 'NVDA';
+var epsDate = new Date(2010, month - 1, day);
+// var stock = 'NVDA';
 function getStock() { return stock; }
 function setStock(newStock) { stock = newStock; }
-var DAYS_BEFORE = 10;
-var DAYS_AFTER = 10;
+// var DAYS_BEFORE = 10;
+// var DAYS_AFTER = 10;
 
 //TODO: Needs to be pulled from other source(e.g. ) that has all epsDates
 //October 18th, 2010 - months are 0-11
-var qUrl = FormatQuandlUrl(stock, epsDate, DAYS_BEFORE, DAYS_AFTER);
+var qUrl = FormatQuandlUrl(stock, epsDate, daysBeforeEPS, daysAfterEPS);
 var siUrl = FormatSIUrl(stock);
 
 // var client = new HttpClient();
@@ -241,7 +289,7 @@ function graphAll(data) {
                     .attr("d", function (d) { return draw_line(d); })
                     .attr("stroke", function (_, i) { return color_scale(i); })
                     .attr("stroke-width", function (_, i) { return line_thickness[i] })
-                    .attr("stroke-dasharray", function(_,i){ return dash_array[i]});
+                    .attr("stroke-dasharray", function (_, i) { return dash_array[i] });
 
                 //d3-legend.js - susie lu
                 var labels = [];

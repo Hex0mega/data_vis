@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
-
-<?php header('Access-Control-Allow-Origin: *');?>
+  
 <?php include_once($_SERVER["DOCUMENT_ROOT"]."/nav/nav.php");?>
 
   <head>

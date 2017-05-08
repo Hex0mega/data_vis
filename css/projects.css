@@ -27,6 +27,7 @@
 }
 
 input {
+  text-align: center;
      display: inline;
      width: 50px;
      margin: 5px;
@@ -34,4 +35,5 @@ input {
 
 .inputs{
     text-align: center;
+
 }
