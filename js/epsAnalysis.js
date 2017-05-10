@@ -99,16 +99,13 @@ var year = 2010;
 var month = 10;
 var day = 20;
 var epsDate = new Date(2010, month - 1, day);
-// var stock = 'NVDA';
 function getStock() { return stock; }
 function setStock(newStock) { stock = newStock; }
-// var DAYS_BEFORE = 10;
-// var DAYS_AFTER = 10;
 
 //TODO: Needs to be pulled from other source(e.g. ) that has all epsDates
 //October 18th, 2010 - months are 0-11
 var qUrl = FormatQuandlUrl(stock, epsDate, daysBeforeEPS, daysAfterEPS);
-var siUrl = FormatSIUrl(stock);
+// var siUrl = FormatSIUrl(stock);
 
 // var client = new HttpClient();
 // client.get(fcUrl,
@@ -204,9 +201,7 @@ function graphAll(data) {
 
         function chart(selection) {
             selection.each(function (datasets) {
-                //
                 // Create the plot. 
-                //
                 var margin = { top: 20, right: 80, bottom: 30, left: 100 },
                     innerwidth = width - margin.left - margin.right,
                     innerheight = height - margin.top - margin.bottom;
@@ -239,10 +234,6 @@ function graphAll(data) {
                 var y_grid = d3.axisLeft(y_scale)
                     .tickSize(-innerwidth)
                     .tickFormat("");
-
-                var draw_line = d3.line()
-                    .x(function (d) { return x_scale(d[0]); })
-                    .y(function (d) { return y_scale(d[1]); });
 
                 var svg = d3.select(this)
                     .attr("width", width)
@@ -278,6 +269,10 @@ function graphAll(data) {
                     .attr("dy", "0.71em")
                     .style("text-anchor", "end")
                     .text(ylabel);
+
+                var draw_line = d3.line()
+                    .x(function (d) { return x_scale(d[0]); })
+                    .y(function (d) { return y_scale(d[1]); });
 
                 var data_lines = svg.selectAll(".d3_xy_chart_line")
                     .data(datasets.map(function (d) { return d3.zip(d.x, d.y); }))
@@ -319,6 +314,8 @@ function graphAll(data) {
                 svg.select(".legendOrdinal")
                     .call(legendOrdinal);
 
+                svg.selectAll(".d3_xy_chart_line")
+                    .data(datasets.map(function (d) { return d3.zip(d.x, d.y); })).exit().remove();
             });
         }
 
@@ -349,13 +346,48 @@ function graphAll(data) {
         return chart;
     }
 
+    var updateListener = false;
+    if (!updateListener) {
+        document.getElementById('inputs').querySelector('#update').addEventListener("click", update);
+        updateListener = true;
+    }
+
+    function drawline(d) {
+        var draw_line = d3.line()
+            .x(function (d) { return x_scale(d[0]); })
+            .y(function (d) { return y_scale(d[1]); });
+
+        return draw_line;
+    }
+
+    function data_lines(d) {
+        var data_lines = svg.selectAll(".d3_xy_chart_line")
+            .data(datasets.map(function (d) { return d3.zip(d.x, d.y); }))
+            .enter().append("g")
+            .attr("class", "d3_xy_chart_line");
+
+        data_lines.append("path")
+            .attr("class", "line")
+            .attr("d", function (d) { return draw_line(d); })
+            .attr("stroke", function (_, i) { return color_scale(i); })
+            .attr("stroke-width", function (_, i) { return line_thickness[i] })
+            .attr("stroke-dasharray", function (_, i) { return dash_array[i] });
+
+        return data_lines;
+    }
+
+    function update() {
+        var qUrl = FormatQuandlUrl(stock, epsDate, daysBeforeEPS, daysAfterEPS);
+        d3.request(qUrl, function (error, data) {
+            if (error) return console.warn(error);
+            graphAll(data);
+        });
+    }
+
     //graphs all close data for a given stock for all known EPS dates
     //x-axis is standarized as days from EPS announcement date
     function graphClose(data) {
-        var blah;
     }
-
-
 }
 
 

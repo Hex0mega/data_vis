@@ -29,6 +29,7 @@
 
       <label for="afterEPS">Days After EPS</label>
       <input id="afterEPS" type="text">
+      <button id="update" disabled>Update</button>
     </div>
 
     <script type="text/javascript" src="../js/epsAnalysis.js"></script>
