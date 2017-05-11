@@ -129,8 +129,7 @@ d3.request(qUrl, function (error, data) {
 
 var parseTime = d3.timeParse("%Y-%m-%d");
 
-//graphs open/close/high/low for one EPS announcement date
-function graphAll(data) {
+function parseQuandlData(data) {
     var data1 = JSON.parse(data.response).dataset_data.data;
     var dates = [];
     var opens = [];
@@ -183,6 +182,13 @@ function graphAll(data) {
         y: eps
     }
     ];
+    return data2;
+}
+
+//graphs open/close/high/low for one EPS announcement date
+function graphAll(data) {
+
+    var data2 = parseQuandlData(data);
 
     var xy_chart = d3_xy_chart()
         .width(970)
@@ -201,6 +207,7 @@ function graphAll(data) {
 
         function chart(selection) {
             selection.each(function (datasets) {
+
                 // Create the plot. 
                 var margin = { top: 20, right: 80, bottom: 30, left: 100 },
                     innerwidth = width - margin.left - margin.right,
@@ -286,7 +293,7 @@ function graphAll(data) {
                     .attr("stroke-width", function (_, i) { return line_thickness[i] })
                     .attr("stroke-dasharray", function (_, i) { return dash_array[i] });
 
-                //d3-legend.js - susie lu
+                //using susie lu's d3-legend.js
                 var labels = [];
                 var colors = [];
                 datasets.forEach(function (d, i) {
@@ -313,10 +320,8 @@ function graphAll(data) {
 
                 svg.select(".legendOrdinal")
                     .call(legendOrdinal);
-
-                svg.selectAll(".d3_xy_chart_line")
-                    .data(datasets.map(function (d) { return d3.zip(d.x, d.y); })).exit().remove();
             });
+
         }
 
         chart.width = function (value) {
@@ -346,13 +351,10 @@ function graphAll(data) {
         return chart;
     }
 
-    var updateListener = false;
-    if (!updateListener) {
-        document.getElementById('inputs').querySelector('#update').addEventListener("click", update);
-        updateListener = true;
-    }
+    document.getElementById('inputs').querySelector('#update').addEventListener("click", update);
+    updateListener = true;
 
-    function drawline(d) {
+    function drawline(d, x_scale, y_scale) {
         var draw_line = d3.line()
             .x(function (d) { return x_scale(d[0]); })
             .y(function (d) { return y_scale(d[1]); });
@@ -376,12 +378,25 @@ function graphAll(data) {
         return data_lines;
     }
 
-    function update() {
+    function removeData() {
+        svg.selectAll("path.line").remove();
+    }
+
+    function appendData() {
         var qUrl = FormatQuandlUrl(stock, epsDate, daysBeforeEPS, daysAfterEPS);
         d3.request(qUrl, function (error, data) {
             if (error) return console.warn(error);
-            graphAll(data);
         });
+        data2 = parseQuandlData(data);
+        svg.append
+         svg.selectAll("path.line")
+            .datum(data2)
+            .call(xy_chart);
+    }
+
+    function update() {
+        removeData();
+        appendData();
     }
 
     //graphs all close data for a given stock for all known EPS dates
