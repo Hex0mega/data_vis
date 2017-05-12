@@ -98,7 +98,7 @@ bindValue(afterEPSText, daysAfterEPS);
 var year = 2010;
 var month = 10;
 var day = 20;
-var epsDate = new Date(2010, month - 1, day);
+var epsDate = new Date(2010, month - 1, day - 2);
 function getStock() { return stock; }
 function setStock(newStock) { stock = newStock; }
 
@@ -129,8 +129,8 @@ d3.request(qUrl, function (error, data) {
 
 var parseTime = d3.timeParse("%Y-%m-%d");
 
-function parseQuandlData(data) {
-    var data1 = JSON.parse(data.response).dataset_data.data;
+function parseQuandlData(raw_data) {
+    var data1 = JSON.parse(raw_data.response).dataset_data.data;
     var dates = [];
     var opens = [];
     var highs = [];
@@ -156,7 +156,7 @@ function parseQuandlData(data) {
     eps.push(Math.max.apply(Math, highs));
     eps.push(Math.min.apply(Math, lows));
 
-    data2 = [{
+    dataArray = [{
         label: " Adj. Close",
         x: dates,
         y: closes
@@ -182,7 +182,115 @@ function parseQuandlData(data) {
         y: eps
     }
     ];
-    return data2;
+    return dataArray;
+}
+
+var width = 970,
+    height = 500;
+var margin = { top: 20, right: 80, bottom: 30, left: 100 },
+    innerwidth = width - margin.left - margin.right,
+    innerheight = height - margin.top - margin.bottom;
+
+function scaleX(data) {
+    return d3.scaleTime()
+        .range([0, innerwidth])
+        .domain([d3.min(data, function (d) { return d3.min(d.x); }),
+        d3.max(data, function (d) { return d3.max(d.x); })]);
+}
+
+function scaleY(data) {
+    return d3.scaleLinear()
+        .range([innerheight, 0])
+        .domain([d3.min(data, function (d) { return d3.min(d.y); }),
+        d3.max(data, function (d) { return d3.max(d.y); })]);
+}
+
+function color_scalef(data) {
+    return d3.scaleOrdinal(d3.schemeCategory10)
+        .domain(d3.range(data.length));
+}
+
+function drawline(svg, data, x_scale, y_scale, color_scale) {
+
+    var draw_line = d3.line()
+        .x(function (d) { return x_scale(d[0]); })
+        .y(function (d) { return y_scale(d[1]); });
+
+    var data_lines = svg.selectAll(".d3_xy_chart_line")
+        .data(data.map(function (d) { return d3.zip(d.x, d.y); }))
+        .enter().append("g")
+        .attr("class", "d3_xy_chart_line");
+
+    var color_scale = color_scalef(data);
+    var line_thickness = ["2px", "2px", "2px", "2px", "5px"];
+    var dash_array = [0, 0, 0, 0, 2];
+
+    data_lines.append("path")
+        .attr("class", "line")
+        .attr("d", function (d) { return draw_line(d); })
+        .attr("stroke", function (_, i) { return color_scale(i); })
+        .attr("stroke-width", function (_, i) { return line_thickness[i] })
+        .attr("stroke-dasharray", function (_, i) { return dash_array[i] });
+
+    return data_lines;
+
+}
+
+function makeSVG(obj, data) {
+
+    var xlabel = "X Axis Label",
+        ylabel = "Y Axis Label";
+
+    var x_scale = scaleX(data);
+    var y_scale = scaleY(data);
+
+    var x_axis = d3.axisBottom(x_scale)
+    var y_axis = d3.axisLeft(y_scale)
+
+    var x_grid = d3.axisBottom(x_scale)
+        .tickSize(-innerheight)
+        .tickFormat("");
+
+    var y_grid = d3.axisLeft(y_scale)
+        .tickSize(-innerwidth)
+        .tickFormat("");
+
+    var svg = d3.select(obj)
+        .attr("width", width)
+        .attr("height", height)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    svg.append("g")
+        .attr("class", "x grid")
+        .attr("transform", "translate(0," + innerheight + ")")
+        .call(x_grid);
+
+    svg.append("g")
+        .attr("class", "y grid")
+        .call(y_grid);
+
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + innerheight + ")")
+        .call(x_axis.tickFormat(d3.timeFormat("%m-%d-%Y")))
+        .append("text")
+        .attr("dy", "-.71em")
+        .attr("x", innerwidth)
+        .style("text-anchor", "end")
+        .text(xlabel);
+
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(y_axis)
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", "0.71em")
+        .style("text-anchor", "end")
+        .text(ylabel);
+
+    return svg;
 }
 
 //graphs open/close/high/low for one EPS announcement date
@@ -200,100 +308,21 @@ function graphAll(data) {
         .call(xy_chart);
 
     function d3_xy_chart() {
-        var width = 640,
-            height = 480,
-            xlabel = "X Axis Label",
-            ylabel = "Y Axis Label";
 
         function chart(selection) {
             selection.each(function (datasets) {
 
                 // Create the plot. 
-                var margin = { top: 20, right: 80, bottom: 30, left: 100 },
-                    innerwidth = width - margin.left - margin.right,
-                    innerheight = height - margin.top - margin.bottom;
+                var x_scale = scaleX(datasets);
+                var y_scale = scaleY(datasets);
 
-                var x_scale = d3.scaleTime()
-                    .range([0, innerwidth])
-                    .domain([d3.min(datasets, function (d) { return d3.min(d.x); }),
-                    d3.max(datasets, function (d) { return d3.max(d.x); })]);
+                svg = makeSVG(this, datasets);
 
-                var y_scale = d3.scaleLinear()
-                    .range([innerheight, 0])
-                    .domain([d3.min(datasets, function (d) { return d3.min(d.y); }),
-                    d3.max(datasets, function (d) { return d3.max(d.y); })]);
-
-                var color_scale = d3.scaleOrdinal(d3.schemeCategory10)
-                    .domain(d3.range(datasets.length));
-
-                var line_thickness = ["2px", "2px", "2px", "2px", "5px"];
-
-                var dash_array = [0, 0, 0, 0, 2];
-
-                var x_axis = d3.axisBottom(x_scale)
-
-                var y_axis = d3.axisLeft(y_scale)
-
-                var x_grid = d3.axisBottom(x_scale)
-                    .tickSize(-innerheight)
-                    .tickFormat("");
-
-                var y_grid = d3.axisLeft(y_scale)
-                    .tickSize(-innerwidth)
-                    .tickFormat("");
-
-                var svg = d3.select(this)
-                    .attr("width", width)
-                    .attr("height", height)
-                    .append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-                svg.append("g")
-                    .attr("class", "x grid")
-                    .attr("transform", "translate(0," + innerheight + ")")
-                    .call(x_grid);
-
-                svg.append("g")
-                    .attr("class", "y grid")
-                    .call(y_grid);
-
-                svg.append("g")
-                    .attr("class", "x axis")
-                    .attr("transform", "translate(0," + innerheight + ")")
-                    .call(x_axis.tickFormat(d3.timeFormat("%m-%d-%Y")))
-                    .append("text")
-                    .attr("dy", "-.71em")
-                    .attr("x", innerwidth)
-                    .style("text-anchor", "end")
-                    .text(xlabel);
-
-                svg.append("g")
-                    .attr("class", "y axis")
-                    .call(y_axis)
-                    .append("text")
-                    .attr("transform", "rotate(-90)")
-                    .attr("y", 6)
-                    .attr("dy", "0.71em")
-                    .style("text-anchor", "end")
-                    .text(ylabel);
-
-                var draw_line = d3.line()
-                    .x(function (d) { return x_scale(d[0]); })
-                    .y(function (d) { return y_scale(d[1]); });
-
-                var data_lines = svg.selectAll(".d3_xy_chart_line")
-                    .data(datasets.map(function (d) { return d3.zip(d.x, d.y); }))
-                    .enter().append("g")
-                    .attr("class", "d3_xy_chart_line");
-
-                data_lines.append("path")
-                    .attr("class", "line")
-                    .attr("d", function (d) { return draw_line(d); })
-                    .attr("stroke", function (_, i) { return color_scale(i); })
-                    .attr("stroke-width", function (_, i) { return line_thickness[i] })
-                    .attr("stroke-dasharray", function (_, i) { return dash_array[i] });
+                //add lines to chart
+                drawline(svg, datasets, x_scale, y_scale);
 
                 //using susie lu's d3-legend.js
+                var color_scale = color_scalef(datasets);
                 var labels = [];
                 var colors = [];
                 datasets.forEach(function (d, i) {
@@ -352,44 +381,28 @@ function graphAll(data) {
     }
 
     document.getElementById('inputs').querySelector('#update').addEventListener("click", update);
-    updateListener = true;
-
-    function drawline(d, x_scale, y_scale) {
-        var draw_line = d3.line()
-            .x(function (d) { return x_scale(d[0]); })
-            .y(function (d) { return y_scale(d[1]); });
-
-        return draw_line;
-    }
-
-    function data_lines(d) {
-        var data_lines = svg.selectAll(".d3_xy_chart_line")
-            .data(datasets.map(function (d) { return d3.zip(d.x, d.y); }))
-            .enter().append("g")
-            .attr("class", "d3_xy_chart_line");
-
-        data_lines.append("path")
-            .attr("class", "line")
-            .attr("d", function (d) { return draw_line(d); })
-            .attr("stroke", function (_, i) { return color_scale(i); })
-            .attr("stroke-width", function (_, i) { return line_thickness[i] })
-            .attr("stroke-dasharray", function (_, i) { return dash_array[i] });
-
-        return data_lines;
-    }
 
     function removeData() {
-        svg.selectAll("path.line").remove();
+        //retains grid, but removes lines
+        // svg.selectAll("path.line").remove();
+        d3.select("svg").remove();
     }
 
     function appendData() {
+
         var qUrl = FormatQuandlUrl(stock, epsDate, daysBeforeEPS, daysAfterEPS);
         d3.request(qUrl, function (error, data) {
             if (error) return console.warn(error);
+            data2 = parseQuandlData(data);
         });
-        data2 = parseQuandlData(data);
-        svg.append
-         svg.selectAll("path.line")
+
+        var svg = makeSVG(svg, data2);
+        var x_scale = scaleX(data2);
+        var y_scale = scaleY(data2);
+        var color_scale = color_scalef(data2);
+        var draw_line = drawline(svg, data2, x_scale, y_scale, color_scale);
+
+        var svg = d3.select("#chart").append("svg")
             .datum(data2)
             .call(xy_chart);
     }
