@@ -175,12 +175,12 @@ function parseQuandlData(raw_data) {
         label: "Adj. Low",
         x: dates,
         y: lows
-    },
+    }/*,
     {
         label: "EPS Date",
         x: epsDates,
         y: eps
-    }
+    }*/
     ];
     return dataArray;
 }
@@ -303,6 +303,9 @@ function graphAll(data) {
         .height(500)
         .xlabel("X Axis")
         .ylabel("Y Axis");
+
+    d3.select("svg").remove();
+
     var svg = d3.select("#chart").append("svg")
         .datum(data2)
         .call(xy_chart);
@@ -380,42 +383,23 @@ function graphAll(data) {
         return chart;
     }
 
-    document.getElementById('inputs').querySelector('#update').addEventListener("click", update);
-
-    function removeData() {
-        //retains grid, but removes lines
-        // svg.selectAll("path.line").remove();
-        d3.select("svg").remove();
-    }
-
-    function appendData() {
-
-        var qUrl = FormatQuandlUrl(stock, epsDate, daysBeforeEPS, daysAfterEPS);
-        d3.request(qUrl, function (error, data) {
-            if (error) return console.warn(error);
-            data2 = parseQuandlData(data);
-        });
-
-        var svg = makeSVG(svg, data2);
-        var x_scale = scaleX(data2);
-        var y_scale = scaleY(data2);
-        var color_scale = color_scalef(data2);
-        var draw_line = drawline(svg, data2, x_scale, y_scale, color_scale);
-
-        var svg = d3.select("#chart").append("svg")
-            .datum(data2)
-            .call(xy_chart);
-    }
-
-    function update() {
-        removeData();
-        appendData();
-    }
-
-    //graphs all close data for a given stock for all known EPS dates
-    //x-axis is standarized as days from EPS announcement date
-    function graphClose(data) {
-    }
+    document.getElementById('inputs').querySelector('#update').addEventListener("click", refreshGraph, false);
 }
+
+function refreshGraph() {
+
+    var qUrl = FormatQuandlUrl(stock, epsDate, daysBeforeEPS, daysAfterEPS);
+    d3.request(qUrl, function (error, data) {
+        if (error) return console.warn(error);
+        graphAll(data);
+    });
+
+}
+
+//graphs all close data for a given stock for all known EPS dates
+//x-axis is standarized as days from EPS announcement date
+function graphClose(data) {
+}
+
 
 
