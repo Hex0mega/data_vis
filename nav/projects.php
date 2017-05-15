@@ -23,6 +23,9 @@
       <label for="stock">Stock Symbol</label>
       <input id="stock" type="text" style="text-transform:uppercase">
 
+      <label for="eps">EPS Date</label>
+      <input id="eps" type="text">
+
       <label for="beforeEPS">Days Before EPS</label>
       <input id="beforeEPS" type="text">
 

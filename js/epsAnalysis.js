@@ -16,7 +16,7 @@ var HttpClient = function HttpClient() {
 var DateFormat = function DateFormat(date) {
     var day = date.getDate();
     //months in javascript are 0-11
-    var month = date.getMonth() + 1;
+    var month = date.getMonth();
     var year = date.getFullYear();
 
     return year + '-' + month + '-' + day;
@@ -24,9 +24,11 @@ var DateFormat = function DateFormat(date) {
 
 var FormatQuandlUrl = function FormatQuandlUrl(stock, epsDate, daysBefore, daysAfter) {
 
-    var startDate = new Date(epsDate);
+    var dateSplit = epsDate().split("-");
+
+    var startDate = new Date(dateSplit[2], dateSplit[0], dateSplit[1]);
     startDate.setDate(startDate.getDate() - daysBefore());
-    var endDate = new Date(epsDate);
+    var endDate =  new Date(dateSplit[2], dateSplit[0], dateSplit[1]);
     endDate.setDate(endDate.getDate() + daysAfter());
 
     var token = 'Hwre8eap-C9y6Yuofwn9';
@@ -39,7 +41,7 @@ var FormatQuandlUrl = function FormatQuandlUrl(stock, epsDate, daysBefore, daysA
     return url;
 }
 
-var FormatSIUrl = function FormatSIUrl(stock, epsDate, daysBefore, daysAfter, order) {
+var FormatSIUrl = function FormatSIUrl(stock) {
 
     var url = 'https://www.streetinsider.com/dr/eps-ticker.php?q=' + stock;
 
@@ -83,27 +85,22 @@ function bindValue(input, observable) {
 }
 
 var stockText = document.getElementById('inputs').querySelector('#stock');
+var epsText = document.getElementById('inputs').querySelector('#eps');
 var beforeEPSText = document.getElementById('inputs').querySelector('#beforeEPS');
 var afterEPSText = document.getElementById('inputs').querySelector('#afterEPS');
 
 var stock = observable('AAPL');
+//mm-dd-yyyy
+var epsDate = observable('10-18-2010');
 var daysBeforeEPS = observable(10);
 var daysAfterEPS = observable(10);
 
 bindValue(stockText, stock);
+bindValue(epsText, epsDate);
 bindValue(beforeEPSText, daysBeforeEPS);
 bindValue(afterEPSText, daysAfterEPS);
 
-//TODO: Implement data binding for EPS Date, stock, and days before, days after
-var year = 2010;
-var month = 10;
-var day = 20;
-var epsDate = new Date(2010, month - 1, day - 2);
-function getStock() { return stock; }
-function setStock(newStock) { stock = newStock; }
-
-//TODO: Needs to be pulled from other source(e.g. ) that has all epsDates
-//October 18th, 2010 - months are 0-11
+//TODO: Needs to be pulled from other source that has epsDates
 var qUrl = FormatQuandlUrl(stock, epsDate, daysBeforeEPS, daysAfterEPS);
 // var siUrl = FormatSIUrl(stock);
 
@@ -136,25 +133,25 @@ function parseQuandlData(raw_data) {
     var highs = [];
     var lows = [];
     var closes = [];
-    var epsDates = [];
+    // var epsDates = [];
 
     data1.forEach(function (d) {
-        epsDates.push(window.epsDate);
-        dates.push(parseTime(d[0]));
+        // epsDates.push(window.epsDate);
         //unadjusted
         // opens.push(d[1]);
         // highs.push(d[2]);
         // lows.push(d[3]);
         // closes.push(d[4]);
         //adjusted
+        dates.push(parseTime(d[0]));
         opens.push(d[8]);
         highs.push(d[9]);
         lows.push(d[10]);
         closes.push(d[11]);
     });
-    var eps = [];
-    eps.push(Math.max.apply(Math, highs));
-    eps.push(Math.min.apply(Math, lows));
+    // var eps = [];
+    // eps.push(Math.max.apply(Math, highs));
+    // eps.push(Math.min.apply(Math, lows));
 
     dataArray = [{
         label: " Adj. Close",
