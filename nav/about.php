@@ -21,7 +21,7 @@
         <li class="interests">Scientific Computing</li>
       </ul>
       <h2>Resume</h2>
-      <a href="<?php echo $_SERVER['DOCUMENT_ROOT'].'/documents/Vladislav Soukhovei Resume 2017.pdf'?>">Resume 2017</a>
+      <a href="http://docdro.id/9w5VSkP">Resume 2017</a>
       <h2>GitHub</h2>
       <a href="https://github.com/Hex0mega">Hex0mega</a>
     </div>
