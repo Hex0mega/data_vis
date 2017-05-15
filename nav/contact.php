@@ -5,7 +5,7 @@
   <html>
 
   <head>
-    <link href="/css/page.css" rel=stylesheet type="text/css">
+    <link href="/css/contact.css" rel=stylesheet type="text/css">
     <title>Contact</title>
   </head>
 

@@ -1,19 +1,33 @@
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+h1 {
+    text-align: left;
+    color: white;
+    font: normal 24pt "Ubuntu";
+    background-color: black
 }
 
-.grid path,
-.grid line {
-  fill: none;
-  stroke: rgba(0, 0, 0, 0.25);
-  shape-rendering: crispEdges;
+h2 {
+    text-align: left;
+    color: black;
+    font: normal 24pt "Ubuntu";
+}
+
+p,a {
+    font: normal 16pt "Ubuntu";
+    margin-left: 1em;
+}
+
+.axis path, .axis line {
+    fill: none;
+    stroke: #000;
+}
+
+.grid path, .grid line {
+    fill: none;
+    stroke: rgba(0, 0, 0, 0.25);
 }
 
 .x.axis path {
-  display: none;
+    display: none;
 }
 
 .line {
@@ -21,18 +35,17 @@
 }
 
 .legend {
-    fill:white;
-    stroke:black;
-    opacity:0.8;
+    fill: white;
+    stroke: black;
+    opacity: 0.8;
 }
 
 input {
-  text-align: center;
-     display: inline;
-     width: 50px;
-     margin: 5px;
+    text-align: center;
+    width: 50px;
+    margin: 5px;
 }
 
-.inputs{
+.inputs {
     text-align: center;
 }

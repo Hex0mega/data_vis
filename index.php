@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-  
+
 <?php include_once($_SERVER["DOCUMENT_ROOT"]."/nav/nav.php");?>
 
   <head>
-    <link href="/css/page.css" rel=stylesheet type="text/css">
+    <link href="/css/index.css" rel=stylesheet type="text/css">
     <title> Data Wiz </title>
   </head>
 

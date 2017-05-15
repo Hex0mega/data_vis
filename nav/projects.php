@@ -5,11 +5,10 @@
   <html>
 
   <head>
+    <link href="/css/projects.css" rel=stylesheet type="text/css">
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script type="text/javascript" src="../node_modules/d3-svg-legend/d3-legend.js"></script>
-    
-    <link href="/css/page.css" rel=stylesheet type="text/css">
-    <link href="/css/projects.css" rel=stylesheet type="text/css">
+
     <title>Projects</title>
   </head>
 
@@ -29,7 +28,7 @@
 
       <label for="afterEPS">Days After EPS</label>
       <input id="afterEPS" type="text">
-      <button id="update" >Update</button>
+      <button id="update">Update</button>
     </div>
 
     <script type="text/javascript" src="../js/epsAnalysis.js"></script>
