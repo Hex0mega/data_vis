@@ -10,9 +10,9 @@
 
   <body>
     <div class="container">
-      <h1>WELCOME!</h1>
+      <h1>Welcome!</h1>
       <p class="text-justify">
-        Welcome to DATA WIZ.
+        Welcome to Data Wiz.
         <br> The portfolio showcase for the work of Vlad Soukhovei
         <br>
       </p>

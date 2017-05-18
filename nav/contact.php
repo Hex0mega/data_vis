@@ -11,7 +11,7 @@
 
   <body>
     <div class="container">
-      <h1>CONTACT</h1>
+      <h1>Contact</h1>
       <p>
         Vlad Soukhovei
         <br> 

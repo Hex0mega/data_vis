@@ -11,7 +11,7 @@
 
   <body>
     <div class="container">
-      <h1>ABOUT</h1>
+      <h1>About</h1>
       <h2>Bio</h2>
       <p> Software engineer at the Gates Corporation. </p>
       <h2>Interests</h2>

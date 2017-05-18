@@ -1,15 +1,15 @@
 //helper functions
 var HttpClient = function HttpClient() {
-    this.get = function (aUrl, aCallback) {
-        var anHttpRequest = new XMLHttpRequest();
-        anHttpRequest.onreadystatechange = function () {
-            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
-                aCallback(anHttpRequest.responseText);
+    this.get = function (url, aCallback) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200)
+                aCallback(xhr.responseText);
         }
 
-        anHttpRequest.open("GET", aUrl, true);
-        // anHttpRequest.setRequestHeader('Access-Control-Allow-Origin', '*')
-        anHttpRequest.send(null);
+        xhr.open("GET", url, true);
+
+        xhr.send(null);
     }
 }
 
@@ -28,7 +28,7 @@ var FormatQuandlUrl = function FormatQuandlUrl(stock, epsDate, daysBefore, daysA
 
     var startDate = new Date(dateSplit[2], dateSplit[0], dateSplit[1]);
     startDate.setDate(startDate.getDate() - daysBefore());
-    var endDate =  new Date(dateSplit[2], dateSplit[0], dateSplit[1]);
+    var endDate = new Date(dateSplit[2], dateSplit[0], dateSplit[1]);
     endDate.setDate(endDate.getDate() + daysAfter());
 
     var token = 'Hwre8eap-C9y6Yuofwn9';
@@ -41,12 +41,12 @@ var FormatQuandlUrl = function FormatQuandlUrl(stock, epsDate, daysBefore, daysA
     return url;
 }
 
-var FormatSIUrl = function FormatSIUrl(stock) {
+// var FormatSIUrl = function FormatSIUrl(stock) {
 
-    var url = 'https://www.streetinsider.com/dr/eps-ticker.php?q=' + stock;
-
-    return url;
-}
+//     // var url = 'https://www.streetinsider.com/dr/eps-ticker.php?q=' + stock;
+//     var url = 'https://www.streetinsider.com/dr/quote.php?q=AAPL';
+//     return url;
+// }
 
 //data binding
 function observable(value) {
@@ -102,7 +102,7 @@ bindValue(afterEPSText, daysAfterEPS);
 
 //TODO: Needs to be pulled from other source that has epsDates
 var qUrl = FormatQuandlUrl(stock, epsDate, daysBeforeEPS, daysAfterEPS);
-// var siUrl = FormatSIUrl(stock);
+// var siUrl = FormatSIUrl(stock());
 
 // var client = new HttpClient();
 // client.get(fcUrl,
@@ -116,15 +116,12 @@ var qUrl = FormatQuandlUrl(stock, epsDate, daysBeforeEPS, daysAfterEPS);
 //d3 stuff
 // d3.request(siUrl, function (error, data) {
 //     if (error) return console.warn(error);
-//     graphAll(data);
 // })
 
 d3.request(qUrl, function (error, data) {
     if (error) return console.warn(error);
     graphAll(data);
 });
-
-var parseTime = d3.timeParse("%Y-%m-%d");
 
 function parseQuandlData(raw_data) {
     var data1 = JSON.parse(raw_data.response).dataset_data.data;
@@ -135,6 +132,7 @@ function parseQuandlData(raw_data) {
     var closes = [];
     // var epsDates = [];
 
+    var parseTime = d3.timeParse("%Y-%m-%d");
     data1.forEach(function (d) {
         // epsDates.push(window.epsDate);
         //unadjusted
