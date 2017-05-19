@@ -1,21 +1,11 @@
-HTTP/1.1 416 Requested Range Not Satisfiable
-Server: nginx
-Date: Thu, 18 May 2017 21:54:36 GMT
-Content-Type: text/html; charset=UTF-8
-Connection: keep-alive
-Vary: Accept-Encoding
-X-Powered-By: PHP/5.3.3
-X-DB: -1
-X-ALLOWED: 22
-Content-Encoding: gzip
-Content-Length: 2992
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head prefix="og:http://ogp.me/ns#">
-<title>StreetInsider.com</title>
+<title>Visa, Inc. (V) Earnings</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <base href="https://www.streetinsider.com/" />
+<meta name="keywords" value="Visa, Inc. (V) Earnings, earnings news, earnings dates, earnings calendar, earnings conference call information, earnings growth, earnings history">
+<meta name="description" value="Visa, Inc. (V) Earnings, earnings news, earnings dates, earnings calendar, earnings conference call information, earnings growth, earnings history">
 
 <meta property="og:image" content="http://www.streetinsider.com/images/silogo-new.png" />
 <meta property="og:site_name" content="StreetInsider.com" />
@@ -54,14 +44,9 @@ window.suggestmeyes_loaded = true;
 <link rel="alternate" type="application/rss+xml" title="StreetInsider.com - Special Reports  [RSS]" href="http://www.streetinsider.com/freefeed.php" />
 <meta name="verify-v1" content="iNCuwiiWAOHHoyxkl9ZUsz4BKM/OWGiuEvgHJlVBg6M=" />
 <script type="text/javascript">
-var baseTag = 'InterruptBlock;';
-var kvals = 'kval=InterruptBlock;';
+var baseTag = 'EcEarnings;';
+var kvals = 'kval=EcEarnings;';
 </script>
-<style type="text/css">
-#content {
-width: 960px;
-}
-</style>
 
 
 <script src="https://cdn.investingchannel.com/roadblock/full_page_ad.js" type="text/javascript" charset="utf-8"></script>
@@ -83,36 +68,36 @@ ga('send', 'pageview');
 </script>
 
 
-<script type="text/javascript" src="/dstlstrtins.js" defer></script><style type="text/css">#d__fFH{position:absolute;top:-5000px;left:-5000px}#d__fF{font-family:serif;font-size:200px;visibility:hidden}#qqqafsqx{display:none!important}</style></head>
+<script type="text/javascript" src="/dstlstrtinsxhr.js" defer></script><style type="text/css">#d__fFH{position:absolute;top:-5000px;left:-5000px}#d__fF{font-family:serif;font-size:200px;visibility:hidden}#qqqafsqx{display:none!important}</style></head>
 <body onLoad="focusLoginField();">
 
 <div id="fb-root"></div>
 <script type="text/javascript">
 window.fbAsyncInit = function() {
-    FB.init({
-        appId      : '415409898518774', // App ID
-        channelUrl : '//www.streetinsider.com/fbchannel.php', // Channel File
-        status     : true, // check login status
-        cookie     : true, // enable cookies to allow the server to access the session
-        xfbml      : true,  // parse XFBML
-        oauth      : true,
-        version    : 'v2.5'
-    });
+	FB.init({
+		appId      : '415409898518774', // App ID
+		channelUrl : '//www.streetinsider.com/fbchannel.php', // Channel File
+		status     : true, // check login status
+		cookie     : true, // enable cookies to allow the server to access the session
+		xfbml      : true,  // parse XFBML
+		oauth      : true,
+		version    : 'v2.5'
+	});
 
-    // Additional initialization code here
-    FB.Event.subscribe('auth.statusChange', function(response) {
-        if ( response.status == 'connected' ) {
-            if ( window.fbLoginCallback ) {
-                window.fbLoginCallback.call(window, response);
-            }
-        }
-    });
+	// Additional initialization code here
+	FB.Event.subscribe('auth.statusChange', function(response) {
+		if ( response.status == 'connected' ) {
+			if ( window.fbLoginCallback ) {
+				window.fbLoginCallback.call(window, response);
+			}
+		}
+	});
 
-    FB.Event.subscribe('edge.create', function(e) {
-        if ( window.onFbLike ) {
-            window.onFbLike();
-        }
-    });
+	FB.Event.subscribe('edge.create', function(e) {
+		if ( window.onFbLike ) {
+			window.onFbLike();
+		}
+	});
 };
 
 // Load the SDK Asynchronously
@@ -126,6 +111,7 @@ ref.parentNode.insertBefore(js, ref);
 </script>
 
 
+
 <div id="container">
 
 
@@ -133,78 +119,790 @@ ref.parentNode.insertBefore(js, ref);
 <img id="container_top" src="/images/body_top.png" alt="" width="1000" height="3" />
 <div id="white">
 
+<div id="header">
+<div id="top_left">
+<a id="logo" href="."><img src="/images/silogo-new.png" alt="StreetInsider.com" width="232" height="79" /></a>
+</div>
+
+<div id="top_right" style="width:726px;">
+
+<div id="sigoogle">
+<form method="GET" action="stock_lookup.php">
+<input type="hidden" name="LookUp" value="Get Quote" /> <!-- may be needed? -->
+<input class="has_placeholder" id="lookup_quote" name="q" type="text" size="10" value="GET QUOTE" style="padding: 2px; border:1px solid #7e9db9" /> 
+<input class="go go_white" type="submit" value="Go" />
+</form>
+
+<script type="text/javascript">
+$jq(function() {
+	var $el = $jq('#lookup_quote');
+	$el.autocomplete({
+		source: function(req, res) {
+			var url = 'mobileapi.php?action=quoteSearch&search=' + req.term;
+			$jq.ajax(url, { dataType: 'json' })
+				.done(function(json) {
+					var newjson = [];
+					for ( var i = 0; i < json.length; i++ ) {
+						newjson.push({
+							label: json[i].name + ' (' + json[i].symbol + ')',
+							sym: json[i].symbol
+						});
+					}
+					res(newjson);
+				})
+				.fail(function() {
+					res({});
+				});
+		},
+		minLength: 1,
+		select: function(event, ui) {
+			event.preventDefault();
+			$jq(this).val(ui.item.sym);
+			$jq(this).closest('form').submit();
+		}
+	});
+});
+</script>
+
+<!-- Google CSE Search Box Begins -->
+
+<form id="searchbox" action="searchresults.php">
+<input id="google_search_header" class="has_placeholder" accesskey="s" name="gq" type="text" size="17" value="SEARCH SITE" />
+<input class="go go_white" type="submit" alt="Go" align="top" name="LookUp" value="Go" />
+</form>
+
+
+<!-- Google CSE Search Box Ends -->
+</div>
+
+<script type="text/javascript">
+registerDefaultInput('lookup_quote');
+registerDefaultInput('google_search_header');
+</script>
+
+<ul id="top_acct_nav">
+		<li><a href="login.php">Log-In</a></li>
+		<li>|</li>
+	<li><a href="account_home.php">Home</a></li>
+	<li>|</li>
+	<li><a href="account_emailalerts.php">E-mail Alerts</a></li>
+	<li>|</li>
+	<li><a onclick="NewWindow(this.href, 'all_headlines', 750, 500, 'yes');return false;" href="http://www.streetinsider.com/headline_scroll.php?type=all">My Headlines</a>
+	<li>|</li>
+	<li><a href="account_portfolio.php">Portfolio</a></li>
+</ul>
+
+<br clear="both" />
+
+<div id="top_text_ad">
+<a href="https://www.streetinsider.com/signup_custom.php?id=8"><b>Upgrade to StreetInsider Premium! - Free Trial</b></a></div>
+
+</div>
+
+
+<br clear="both" />
+
+
+<div style="margin-left: 128px;" class="ad">
+<!-- Random number generator to be placed in page header -->
+<script language="javascript" type="text/javascript">var ord = Math.random() * 10000000000000000</script>
+
+<!-- begin ad tag (tile=1) -->
+<script src='//ads.investingchannel.com/adtags/streetinsider/equities/728x90.js' type='text/javascript' charset='utf-8'></script>
+<!-- End ad tag --></div>
+
+</div> <!-- end #header -->
+
+
+<div id="nav"> 
+
+<div class="mini_ad">
+</div>
+
+
+<ul class='loggedout'>
+
+	<li class="main_li show-home"><a class="" href="index.php">Home</a></li>
+
+	<!-- for narrow screens -->
+	<li class="main_li show-sm" onmouseover="SIJS.toggleMenu(this, true);" onmouseout="SIJS.toggleMenu(this, false);">
+		<a href="#">Menu</a>
+		<ul class="nav_submenu" style="white-space:nowrap">
+								<li class="MarginBottomNeg15 sub_li"><a href="http://www.streetinsider.com/signup_custom.php?id=24&pid=45">JOIN</a></li>
+								<li class="MarginBottomNeg15 sub_li premiumtab"><a href="premium_content.php">SI Premium</a></li>
+								<li class="MarginBottomNeg15 sub_li"><a href="http://www.streetinsider.com/portal/Ratings+Insider/4.html">Ratings</a></li>
+								<li class="MarginBottomNeg15 sub_li"><a href="http://www.streetinsider.com/portal/M+and+A+Insider/1.html">M&A Insider</a></li>
+								<li class="MarginBottomNeg15 sub_li"><a href="http://www.streetinsider.com/portal/Earnings+Insider/5.html">EPS Insider</a></li>
+								<li class="MarginBottomNeg15 sub_li"><a href="http://www.streetinsider.com/portal/Dividend+Insider/8.html">Dividends</a></li>
+								<li class="MarginBottomNeg15 sub_li"><a href="http://www.streetinsider.com/portal/IPO+Insider/2.html">IPO Insider</a></li>
+								<li class="MarginBottomNeg15 sub_li"><a href="http://www.streetinsider.com/portal/Hedge+Fund+Insider/6.html">Hedge Funds</a></li>
+								<li class="MarginBottomNeg15 sub_li"><a href=" http://www.streetinsider.com/premium_newsletters.php">Premium Letters</a></li>
+								<li class="MarginBottomNeg15 sub_li"><a href="https://sinewswire.streetinsider.com/">Submit Release</a></li>
+				</ul>
+	</li>
+
+				<li class="main_li hide-sm"><a class="" href="http://www.streetinsider.com/signup_custom.php?id=24&pid=45">JOIN</a></li>
+					<li class="main_li hide-sm premiumtab" onmouseover="SIJS.toggleMenu(this, true);" onmouseout="SIJS.toggleMenu(this, false);">
+		<a href="premium_content.php">SI Premium</a>
+		<ul class="nav_submenu" style="white-space:nowrap">
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="premium_content_fullfeed.php">Full Feed View</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="headline_scroll.php">Headline View</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/squawk_popup.php">SI Premium Squawk Box</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/account_emailalerts.php">Alerts</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/account_todays_headlines.php">Custom Headlines </a></li>
+									<li class="MarginBottomNeg15 sub_li premiumtab"><a class="" href="http://www.streetinsider.com/account_subscription.php">UPGRADE TO SI PREMIUM</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/signup_content.php">License</a></li>
+					</ul>
+	</li>
+					<li class="main_li" onmouseover="SIJS.toggleMenu(this, true);" onmouseout="SIJS.toggleMenu(this, false);">
+		<a href="">Calendars</a>
+		<ul class="nav_submenu" style="white-space:nowrap">
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/dividend_cal.php">Dividend Calendar</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/ec_calendar.php">Earnings Calendar</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/events.php">Event Driven</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/fda.php">FDA Calendar</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/conferences.php">Investor Conferences</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/ipo_history.php?type=upcoming">IPO Calendar</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/ma_merger_arbitrage.php">Merger Arb</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/rating_cal.php">Ratings Calendar</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/stocksplits_cal.php">Stock Split Calendar </a></li>
+					</ul>
+	</li>
+					<li class="main_li hide-sm" onmouseover="SIJS.toggleMenu(this, true);" onmouseout="SIJS.toggleMenu(this, false);">
+		<a href="http://www.streetinsider.com/portal/Ratings+Insider/4.html">Ratings</a>
+		<ul class="nav_submenu" style="white-space:nowrap">
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Analyst+Comments">Analyst Comments</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Hot+Comments">Hot Analyst Comments</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Analyst+EPS+Change">Analyst EPS Change</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Analyst+EPS+View">Analyst EPS View</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Analyst+PT+Change">Analyst PT Change</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Credit+Ratings">Credit Ratings</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Downgrades">Downgrade News</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Hot+Downgrades">Hot Downgrades</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/New+Coverage">New Coverage News</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Hot+New+Coverage">Hot New Coverage</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Upgrades">Upgrade News</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Hot+Upgrades">Hot Upgrades</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/portal/Ratings+Insider/4.html">More...</a></li>
+					</ul>
+	</li>
+					<li class="main_li hide-sm" onmouseover="SIJS.toggleMenu(this, true);" onmouseout="SIJS.toggleMenu(this, false);">
+		<a href="http://www.streetinsider.com/portal/M+and+A+Insider/1.html">M&A Insider</a>
+		<ul class="nav_submenu" style="white-space:nowrap">
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Mergers+and+Acquisitions">Merger News</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Hot+M+and+A">Hot M&A News</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Private+Equity">Private Equity</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Rumors">Rumors</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Spinoffs">Spinoffs</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/ma_merger_arbitrage.php">Merger Arbitrage</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/events.php">Event Driven</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/ma_top_deals.php">2017 Top M&A Deals</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/portal.php?id=1&full=middle_center">Top 50 Takeover Targets</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/portal/M+and+A+Insider/1.html">More...</a></li>
+					</ul>
+	</li>
+					<li class="main_li hide-sm on" onmouseover="SIJS.toggleMenu(this, true);" onmouseout="SIJS.toggleMenu(this, false);">
+		<a href="http://www.streetinsider.com/portal/Earnings+Insider/5.html">EPS Insider</a>
+		<ul class="nav_submenu" style="white-space:nowrap">
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/ec_calendar.php">Earnings Calendar</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Earnings">Earnings News</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Hot+Earnings">Hot Earnings</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Guidance">Guidance</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Hot+Guidance">Hot Guidance</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Conference+Calls">Conference Calls</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/ec_earnings.php?q=">Earnings History Search</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="on" href="http://www.streetinsider.com/portal/Earnings+Insider/5.html">More...</a></li>
+					</ul>
+	</li>
+					<li class="main_li hide-sm" onmouseover="SIJS.toggleMenu(this, true);" onmouseout="SIJS.toggleMenu(this, false);">
+		<a href="http://www.streetinsider.com/portal/Dividend+Insider/8.html">Dividends</a>
+		<ul class="nav_submenu" style="white-space:nowrap">
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/dividend_cal.php">Dividend Calendar</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Dividends">Dividend News</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Hot+Dividends">Hot Dividends</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Dividend+Hike">Dividend Hike</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Special+Dividends">Special Dividends</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Stock+Buybacks">Stock Buybacks</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Hot+Buybacks">Hot Stock Buybacks</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Stock+Splits">Stock Splits</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/portal/Dividend+Insider/8.html">More...</a></li>
+					</ul>
+	</li>
+					<li class="main_li hide-sm" onmouseover="SIJS.toggleMenu(this, true);" onmouseout="SIJS.toggleMenu(this, false);">
+		<a href="http://www.streetinsider.com/portal/IPO+Insider/2.html">IPO Insider</a>
+		<ul class="nav_submenu" style="white-space:nowrap">
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/IPOs">IPO News</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Hot+IPOs">Hot IPOs</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Equity+Offerings">Equity Offerings</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/ipo_history.php?type=priced">Recent IPOs</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/ipo_history.php?type=upcoming">Upcoming IPOs</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/top_ipos.php">2017 Top IPOs</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/portal/IPO+Insider/2.html">More...</a></li>
+					</ul>
+	</li>
+					<li class="main_li hide-sm" onmouseover="SIJS.toggleMenu(this, true);" onmouseout="SIJS.toggleMenu(this, false);">
+		<a href="http://www.streetinsider.com/portal/Hedge+Fund+Insider/6.html">Hedge Funds</a>
+		<ul class="nav_submenu" style="white-space:nowrap">
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/13Ds">13D</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/13Fs">13F</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/13Gs">13G</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Hedge+Funds">Hedge Funds News</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Hot+Hedge+Fund+News">Hot Insider Trades</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Insider+Trades">Insider Trades</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/portal/Hedge+Fund+Insider/6.html">More...</a></li>
+					</ul>
+	</li>
+					<li class="main_li hide-sm nav_pnl" onmouseover="SIJS.toggleMenu(this, true);" onmouseout="SIJS.toggleMenu(this, false);">
+		<a href=" http://www.streetinsider.com/premium_newsletters.php">Premium Letters</a>
+		<ul class="nav_submenu" style="white-space:nowrap">
+									<li class="MarginBottomNeg15 sub_li premiumtab"><a class="" href="http://www.streetinsider.com/Newsletter/StreetInsider.com+Dividend+Insider+Elite/4.html">NEW *** Dividend Insider Elite</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Newsletter/Streetinsider.com+Pulse+Picks/2.html">Pulse Picks</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Newsletter/StreetInsider.com+Ratings+Insider+Elite/1.html">Ratings Insider Elite</a></li>
+									<li class="MarginBottomNeg15 sub_li"><a class="" href="http://www.streetinsider.com/Newsletter/StreetInsider.com+Stealth+Growth+Insider/3.html">Stealth Growth Insider</a></li>
+					</ul>
+	</li>
+					<li class="main_li hide-sm"><a class="" href="https://sinewswire.streetinsider.com/">Submit Release</a></li>
+	
+</ul>
+
+<!-- END Header -->
+</div>
+
+
+<div id="quick_links">
+<ul>
+<li class="quick_links_title">QUICK LINKS :</li>
+<li class="quick_links_first"><a href="http://www.streetinsider.com/entities/Goldman+Sachs+Conviction+Buy+List">Goldman Sachs Conviction Buy List</a></li>
+<li><a href="http://www.streetinsider.com/entities/Carl+Icahn">Carl Icahn News</a></li>
+<li><a href="http://www.streetinsider.com/entities/Warren+Buffett">Warren Buffett News</a></li>
+<li><a href="http://www.streetinsider.com/entities/William+Ackman">Ackman News</a></li>
+<li style="padding-left: 6px;">
+	<a href="https://twitter.com/Street_Insider" data-width="241" class="twitter-follow-button">Follow @Street_Insider</a>
+	<script src="https://platform.twitter.com/widgets.js" type="text/javascript"></script>
+</li>
+<li style="padding-left: 6px;">
+	<div class="fb-like" data-href="https://www.facebook.com/streetinsiderdotcom" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+</li>
+</ul>
+</div>
+
+
+
+
 
 
 <style type="text/css">
-#distilUnblockForm > div {
-margin: 6px;
+.earning_history {
+width: 650px;
+border-spacing: 0px;
 }
-#distilUnblockForm label {
-width: 100px;
-display: inline-block;
+.earning_history th {
+border-bottom: 1px solid #A0C0F0;
+color: #003060;
+text-align: left;
+padding: 4px;
+font-size: 11px;
 }
-#distilUnblockForm input[type="text"] {
-width: 250px;
-padding: 3px;
+.earning_history td {
+padding: 4px;
+text-align: left;
+font-size: 11px;
 }
+.earning_history td.surprise_red, span.surprise_red {
+color: #C00000;
+}
+.earning_history td.surprise_green, span.surprise_green {
+color: #00A000;
+}
+
+.earning_history td.nowrap {
+	white-space: nowrap;
+}
+
+.earning_history tr.is_future {
+background-color: #FFD89C;
+}
+
+.earning_history tr.is_hilite {
+	font-weight: bold;
+}
+
+div.earnings_form {
+	margin-bottom: 8px;
+}
+div.earnings_form form {
+	display: inline;
+}
+
+h3 {
+	margin-bottom: 5px;
+}
+
+table.info-table {
+	margin-top: 12px;
+	width: 620px;
+}
+
+table.info-table td, table.info-table th {
+	padding: 4px;
+}
+table.info-table th {
+	text-align: right;
+}
+div.d-others {
+	font-weight: bold;
+}
+
+div.middleads div {
+	display: inline-block;
+}
+
 </style>
 
-<div id="content">
+<div id="content" style="float:none; width:984px; margin-bottom: 30px;">
 
-<h1>Pardon Our Interruption...</h1>
+<!-- right sidebar -->
+<div style="float:right; width: 310px;">
+<div style="margin-bottom:10px;">
+<!-- Random number generator to be placed in page header -->
+<script language="javascript" type="text/javascript">var ord = Math.random() * 10000000000000000</script>
 
-<p>As you were browsing www.streetinsider.com something about your browser made us think you were a bot.</p>
+<!-- begin ad tag (tile=2) -->
+<script src='//ads.investingchannel.com/adtags/streetinsider/equities/300x250.js' type='text/javascript' charset='utf-8'></script>
+<!-- End ad tag --></div>
 
-<p>If you are interested in www.streetinsider.com content, APIs are available.  Please contact us here <a href="http://www.streetinsider.com/signup_content.php">http://www.streetinsider.com/signup_content.php</a></p>
+<div style="margin-bottom: 10px;">
+	<h3>V Financial Facts</h3>
+	Other revenues: 218M<br />Marketing: 300M<br />	<strong><a href="stock_lookup.php?q=V&amp;financials=income">See Full Income Statement</a></strong>
+	<br /><br />
 
-<p>To request an unblock, please fill out the form below and we will review it as soon as possible.</p>
+	Settlement receivable: -889M<br />Cash and cash equivalents: -29.05B<br />	<strong><a href="stock_lookup.php?q=V&amp;financials=balance">See Full Balance Sheet</a></strong>
+</div>
 
 <div>
+<!-- Random number generator to be placed in page header -->
+<script language="javascript" type="text/javascript">var ord = Math.random() * 10000000000000000</script>
+
+<!-- begin ad tag (tile=2) -->
+<script src='//ads.investingchannel.com/adtags/streetinsider/equities/300x250.js' type='text/javascript' charset='utf-8'></script>
+<!-- End ad tag --></div>
+
+</div>
+<!-- end right sidebar -->
+
+<h1 style="margin-top:3px;">Visa, Inc. (V) Earnings</h1>
+
+<div class="earnings_form">
 
 
-
-
-<form id="distilUnblockForm" method="post" action="https://unblock.distilnetworks.com/">
-	<div id="dUF_first_name">
-		<label for="dUF_input_first_name">First Name:</label>
-		<input type="text" id="dUF_input_first_name" name="first_name" value="" />
-	</div>
-	<div id="dUF_last_name">
-		<label for="dUF_input_last_name">Last Name:</label>
-		<input type="text" id="dUF_input_last_name" name="last_name" value="" />
-	</div>
-	<div id="dUF_email">
-		<label for="dUF_input_email">E-mail:</label>
-		<input type="text" id="dUF_input_email" name="email" value="" />
-	</div>
-	<div id="dUF_city" style="display: none">
-		<label for="dUF_input_city">City (Leave Blank):</label>
-		<input type="text" id="dUF_input_city" name="city" value="" />
-	</div>
-	<div id="dUF_unblock">
-		<input  id="dUF_input_unblock" name="unblock" type="submit" value="Request Unblock" />
-	</div>
-	<div id="dUF_unblock_text">
-		You reached this page when attempting to access http://www.streetinsider.com/ec_earnings.php?q=AAPL from 104.129.204.155 on 2017-05-18 21:54:36 GMT.<br />
-		Trace: 95D981E4-3C14-11E7-93B1-E6FDD743887E via 1c703e6c-2c6e-4c55-b30b-ae426b0cb7c6
-	</div>
-	<div id="dUF_form_fields" style="display: none">
-		<input type="hidden" name="B" value="6884:104.129.204.155:AEB4A098-3A8D-308D-B40C-B2A58CDFBBC0" />       		
-		<input type="hidden" name="P" value="AEB4A098-3A8D-308D-B40C-B2A58CDFBBC0" />       		
-		<input type="hidden" name="I" value="" />       		
-		<input type="hidden" name="U" value="" />       		
-		<input type="hidden" name="V" value="4" />
-		<input type="hidden" name="D" value="6884" />
-		<input type="hidden" name="A" value="2206" />
-		<input type="hidden" name="LOADED" value="2017-05-18 21:54:36" />
-		<input type="hidden" name="H" value='www.streetinsider.com' />
-		<input type="hidden" id="distil_block_identity_info" name="PB" value="" />
-	</div>
+<form action="ec_earnings.php" method="get"> 
+<label>Ticker: </label> 
+<input class="text" type="text" name="q" size="7" /> 
+<input class="button" type="submit" value="Search" /> 
 </form>
-</div>
+
+&nbsp; | &nbsp;
+<a href="stock_lookup.php?q=V">Expand Research on V</a>
+
+<table cellspacing="0" class="info-table">
+<tr>
+	<th width="40%">Next EPS Date</th>
+		<td>7/21/17 *Est.</td>
+		<th>EPS Growth Rate</th>
+	<td><span style="color:green">+26.5%</span> *Last Qtr.</td>
+</tr>
+<tr>
+	<th>Average EPS % Beat Rate</th>
+	<td><span style="color:green">+2.2%</span></td>
+	<th>Revenue Growth Rate</th>
+	<td><span style="color:green">+25.0%</span> *Last Qtr.</td>
+</tr>
+<tr>
+	<th>Average % Move 1-Wk after EPS</th>
+	<td><span style="color:green">+1.1%</span></td>
+	<th>Normal Earnings Time</th>
+	<td>After Close</td>
+</tr>
+</table>
+
 
 </div>
 
+<table class="earning_history" cellspacing="0">
+<tr>
+<th><a href="ec_earnings.php?sort=earning_date&amp;q=V" title="Sort by Date">Date</a></th><th>&nbsp;</th>
+		<th><a href="ec_earnings.php?sort=qtr&amp;q=V" title="Sort by Qtr">Qtr</a></th>
+		<th><a href="ec_earnings.php?sort=reported&amp;q=V" title="Sort by EPS">EPS</a></th>
+		<th><a href="ec_earnings.php?sort=estimated&amp;q=V" title="Sort by Cons.">Cons.</a></th>
+		<th><a href="ec_earnings.php?sort=surprise&amp;q=V" title="Sort by Surprise">Surprise</a></th>
+<th><a href="ec_earnings.php?sort=revenue&amp;q=V" title="Sort by Revenue">Revs</a></th>
+		<th><a href="ec_earnings.php?sort=revenue_estimate&amp;q=V" title="Sort by Estimated Revenue">Cons.</a></th>
+		<th title="Guidance">Gd.</th>
+<th><a href="ec_earnings.php?sort=onewk_perf&amp;q=V" title="Sort by Performance for Week">1-Week %</a></th>
+<th><a href="ec_earnings.php?sort=oneday_perf&amp;q=V" title="Sort by Performance for Day">1-Day %</a></th>
+<th>Details</th>
+	</tr>
+<tr class="is_hilite ">
+<td>4/20/17 </td>
+<td><a href="http://event.on24.com/wcc/r/1332571/BF16E4E21A8CC833B3543BAF81CBA721"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q217</td>
+		<td class="nowrap">$0.86</td><td>$0.79</td>
+<td><span class="surprise_green">+$0.07</span></td><td>$4.5B</td><td>$4.31B</td>
+<td><a href="ec_guidance.php?q=V&amp;qtr=2&amp;year=2017"><strong style="color:#0000FF; font-size: 14px;">=</strong></a></td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=12798044">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>2/2/17 </td>
+<td><a href="http://event.on24.com/wcc/r/1288585/51ED3CD356E08C64D48744C2CBFA7E52"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q117</td>
+		<td class="nowrap">$0.69</td><td>$0.78</td>
+<td><span class="surprise_red">-$0.09</span></td><td>$4.5B</td><td>$4.29B</td>
+<td><a href="ec_guidance.php?q=V&amp;qtr=1&amp;year=2017"><strong style="color:#0000FF; font-size: 14px;">=</strong></a></td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=12492699">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>10/24/16 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://event.on24.com/wcc/r/1211281/99BE8F8D6EEBBFE2E17DF4F5C75D5D36"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q416</td>
+		<td class="nowrap">$0.78</td><td>$0.73</td>
+<td><span class="surprise_green">+$0.05</span></td><td>$4.26B</td><td>$4.23B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=12160050">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>7/21/16 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://event.on24.com/wcc/r/1203272/BB6D5764E9E0B099F56C710BD221379C"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q316</td>
+		<td class="nowrap">$0.69</td><td>$0.66</td>
+<td><span class="surprise_green">+$0.03</span></td><td>$3.63B</td><td>$3.65B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=11852044">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>4/21/16 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/Press+Releases/Visa+Inc.+To+Announce+Fiscal+Second+Quarter+2016+Financial+Results+on+April+21%2C+2016/11477253.html"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q216</td>
+		<td class="nowrap">$0.68</td><td>$0.67</td>
+<td><span class="surprise_green">+$0.01</span></td><td>$3.6B</td><td>$3.6B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=11529008">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>1/28/16 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/Press+Releases/Visa+Inc.+To+Announce+Fiscal+First+Quarter+2016+Financial+Results+on+January+28%2C+2016/11192175.html"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q116</td>
+		<td class="nowrap">$0.69</td><td>$0.68</td>
+<td><span class="surprise_green">+$0.01</span></td><td>$3.57B</td><td>$3.62B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=11258235">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>11/2/15 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/Press+Releases/Visa+Inc.+To+Announce+Fiscal+Fourth+Quarter+and+Full-Year+2015+Financial+Results+on+November+2%2C+2015/10985152.html"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q415</td>
+		<td class="nowrap">$0.62</td><td>$0.63</td>
+<td><span class="surprise_red">-$0.01</span></td><td>$3.6B</td><td>$3.57B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=11022326">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>7/23/15 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://event.on24.com/r.htm?e=1021078&s=1&k=541BD085791E3F19F5357D2947DE9A5E"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q315</td>
+		<td class="nowrap">$0.74</td><td>$0.59</td>
+<td><span class="surprise_green">+$0.15</span></td><td>$3.52B</td><td>$3.36B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=10747021">Details</a></td>
+</tr>
+</table>
+<input type="button" class="button" onclick="showMore();" value="Expand Table" id="expandbtn"/>
+<table class="earning_history" cellspacing="0" style="display:none" id="history_extra">
+<tr class="is_hilite ">
+<td>4/30/15 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/Press+Releases/Visa+Inc.+To+Announce+Fiscal+Second+Quarter+2015+Financial+Results+on+April+30%2C+2015/10424088.html"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q215</td>
+		<td class="nowrap">$0.63</td><td>$0.62</td>
+<td><span class="surprise_green">+$0.01</span></td><td>$3.4B</td><td>$3.34B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=10508678">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>1/29/15 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/Press+Releases/Visa+Inc.+To+Announce+Fiscal+First+Quarter+2015+Financial+Results+on+January+29%2C+2015/10132421.html"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q115</td>
+		<td class="nowrap">$0.63</td><td>$0.62</td>
+<td><span class="surprise_green">+$0.01</span></td><td>$3.4B</td><td>$3.35B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=10208585">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>10/29/14 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td></td>
+
+		<td>Q414</td>
+		<td class="nowrap">$0.55</td><td>$0.53</td>
+<td><span class="surprise_green">+$0.02</span></td><td>$3.2B</td><td>$3.19B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=9954283">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>7/24/14 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/Press+Releases/Visa+Inc.+To+Announce+Fiscal+Third+Quarter+2014+Financial+Results+on+July+24%2C+2014/9623040.html"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q314</td>
+		<td class="nowrap">$0.54</td><td>$0.53</td>
+<td><span class="surprise_green">+$0.01</span></td><td>$3.16B</td><td>$3.15B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=9688411">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>4/24/14 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/Press+Releases/Visa+Inc.+To+Announce+Fiscal+Second+Quarter+2014+Financial+Results+on+April+24%2C+2014/9333369.html"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q214</td>
+		<td class="nowrap">$0.55</td><td>$0.55</td>
+<td><span class="surprise_black">$0.00</span></td><td>$3.16B</td><td>$3.19B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/Earnings/Visa+%28V%29+Tops+Q2+EPS+by+2c%2C+Offers+Guidance/9409406.html">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>1/30/14 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/Press+Releases/Visa+Inc.+To+Announce+Fiscal+First+Quarter+2014+Financial+Results+on+January+30%2C+2014/9025173.html"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q114</td>
+		<td class="nowrap">$0.55</td><td>$0.54</td>
+<td><span class="surprise_green">+$0.01</span></td><td>$3.16B</td><td>$3.12B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=9104414">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>10/30/13 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/Press+Releases/Visa+Inc.+To+Announce+Fiscal+Fourth+Quarter+and+Full-Year+2013+Financial+Results+on+October+30%2C+2013/8731195.html"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q413</td>
+		<td class="nowrap">$0.46</td><td>$0.46</td>
+<td><span class="surprise_black">$0.00</span></td><td>$3B</td><td>$3.02B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=8827446">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>7/24/13 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/Press+Releases/Visa+Inc.+To+Announce+Fiscal+Third+Quarter+2013+Financial+Results+on+July+24%2C+2013/8454473.html"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q313</td>
+		<td class="nowrap">$0.47</td><td>$0.45</td>
+<td><span class="surprise_green">+$0.02</span></td><td>$3B</td><td>$2.89B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=8528755">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>5/1/13 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/Press+Releases/Visa+Inc.+To+Announce+Fiscal+Second+Quarter+2013+Financial+Results+on+May+1%2C+2013/8220590.html"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q213</td>
+		<td class="nowrap">$0.48</td><td>$0.45</td>
+<td><span class="surprise_green">+$0.03</span></td><td>$3B</td><td>$2.85B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=8295477">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>2/6/13 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/Press+Releases/Visa+Inc.+To+Announce+Fiscal+First+Quarter+2013+Financial+Results+on+February+6%2C+2013/7993219.html"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q113</td>
+		<td class="nowrap">$0.46</td><td>$0.45</td>
+<td><span class="surprise_green">+$0.01</span></td><td>$2.85B</td><td>$2.82B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=8066155">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>10/31/12 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/Press+Releases/Visa+Inc.+To+Announce+Fiscal+Fourth+Quarter+and+Full-Year+2012+Financial+Results+on+October+31%2C+2012/7753756.html"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q412</td>
+		<td class="nowrap">$0.39</td><td>$0.37</td>
+<td><span class="surprise_green">+$0.02</span></td><td>$2.73B</td><td>$2.67B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>7/25/12 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/Press+Releases/Visa+Inc.+To+Announce+Fiscal+Third+Quarter+2012+Financial+Results+on+July+25%2C+2012/7550004.html"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q312</td>
+		<td class="nowrap">$0.39</td><td>$0.36</td>
+<td><span class="surprise_green">+$0.03</span></td><td>$2.6B</td><td>$2.52B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/Earnings/Visa+%28V%29+Posts+Better-Than-Expected+Q3+Profit%2C+Sales/7604861.html">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>5/2/12 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/Press+Releases/Visa+Inc.+To+Announce+Fiscal+Second+Quarter+2012+Financial+Results+on+May+2%2C+2012/7330839.html"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q212</td>
+		<td class="nowrap">$0.40</td><td>$0.38</td>
+<td><span class="surprise_green">+$0.02</span></td><td>$2.58B</td><td>$2.48B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=7395602">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>2/8/12 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/Press+Releases/Visa+Inc.+to+Announce+Fiscal+First+Quarter+2012+Financial+Results+on+February+8%2C+2012/7080135.html"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q112</td>
+		<td class="nowrap">$0.37</td><td>$0.36</td>
+<td><span class="surprise_green">+$0.01</span></td><td>$2.55B</td><td>$2.47B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/Earnings/Visa+%28V%29+Charges+Higher+After+Strong+Q1/7151140.html">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>10/26/11 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/Press+Releases/Visa+Inc.+to+Announce+Fiscal+Fourth+Quarter+and+Full-Year+2011+Financial+Results+on+October+26%2C+2011/6819218.html"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q411</td>
+		<td class="nowrap">$0.32</td><td>$0.31</td>
+<td><span class="surprise_green">+$0.01</span></td><td>$2.38B</td><td>$2.39B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=6885874">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>5/5/11 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/Press+Releases/Visa+Inc.+To+Announce+Fiscal+Second+Quarter+2011+Financial+Results+on+May+5%2C+2011/6393239.html"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q211</td>
+		<td class="nowrap">$0.31</td><td>$0.30</td>
+<td><span class="surprise_green">+$0.01</span></td><td>$2.25M</td><td>$2.23B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=6477980">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>7/27/11 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/Press+Releases/Visa+Inc.+to+Announce+Fiscal+Third+Quarter+2011+Financial+Results+on+July+27%2C+2011/6627362.html"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q211</td>
+		<td class="nowrap">$0.32</td><td>$0.31</td>
+<td><span class="surprise_green">+$0.01</span></td><td>$2.32B</td><td>$2.3B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/Stock+Buybacks/Visa+%28V%29+Tops+Q2+EPS+by+3c%2C+Announces+%241+Million+Buyback/6664224.html">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>10/27/10 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/news.php?st=b&id=6027881"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q410</td>
+		<td class="nowrap">$0.24</td><td>$0.24</td>
+<td><span class="surprise_black">$0.00</span></td><td>N/A</td><td>N/A</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/Earnings/Visa+%28V%29+Reports+Inline+Q4+EPS+of+95c%3B+Announces+%241B+Buyback%2C+Raises+Qtr.+Dividend+by+20%25%3B+Reaffirms+Guidance/6056869.html">Details</a></td>
+</tr>
+<tr class="is_hilite ">
+<td>2/2/11 <img src="images/icons/check-icon.gif" title="Confirmed" /></td>
+<td><a href="http://www.streetinsider.com/Press+Releases/Visa+Inc.+To+Announce+Fiscal+First+Quarter+2011+Financial+Results+on+February+2%2C+2011/6179687.html"><img src="images/icons/telephone.png" title="Conference Call" /></a></td>
+
+		<td>Q410</td>
+		<td class="nowrap">$0.31</td><td>$0.30</td>
+<td><span class="surprise_green">+$0.01</span></td><td>$2.2B</td><td>$2.22B</td>
+<td>N/A</td>
+<td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="login.php" class="PremiumTip"><img src="images/number_blur.png" /></a></td><td><a href="http://www.streetinsider.com/news.php?id=6253877">Details</a></td>
+</tr>
+</table>
+<div style="clear:left"></div><div style="width: 600px; float: left; margin: 10px 0"><div class="d-others">Like Visa, Inc. (V) Earnings? Also look at <a href="ec_earnings.php?q=MA">MA</a>, <a href="ec_earnings.php?q=AXP">AXP</a>, <a href="ec_earnings.php?q=PYPL">PYPL</a>, <a href="ec_earnings.php?q=DFS">DFS</a></div>
+
+	  <div id="news_extra_tabs">
+	    <div id="right_tabs" class="eg-tabs" style="width:650px;">
+	      <a id="tab_all" class="on" href="#" onclick="changeEarningsPod(this); return false;"><span>All Earnings Related News</span></a>
+		  <a id="tab_eg" href="#" onclick="changeEarningsPod(this); return false;"><span>Earnings News Only</span></a>
+		</div><ul id="content_all">
+<li style="border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-top: 5px; "><a href="news.php?id=12800472">Visa (V) PT Raised to $100 at Oppenheimer on 2Q Rev/EPS Beat; 'Upside Quarter On Broad-Based Volume Strength'</a><br /><span style="color:#888">April 21, 2017 10:09 AM</span></li>
+<li style="border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-top: 5px; "><a href="news.php?id=12800369">Visa (V) PT Raised to $106 at Barclays; Reiterates Overweight</a><br /><span style="color:#888">April 21, 2017 9:40 AM</span></li>
+<li style="border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-top: 5px; "><a href="news.php?id=12800288">Visa (V) PT Raised to $105 at Instinet Following 2Q Report</a><br /><span style="color:#888">April 21, 2017 9:12 AM</span></li>
+<li style="border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-top: 5px; "><a href="news.php?id=12799814">Visa (V): Solid Growth Helped By Easter Timing - Jefferies</a><br /><span style="color:#888">April 21, 2017 7:28 AM</span></li>
+<li style="border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-top: 5px; "><a href="news.php?id=12799712">Visa (V) PT Raised to $105 at Cowen Following 2Q Report</a><br /><span style="color:#888">April 21, 2017 6:59 AM</span></li>
+<li style="margin-top: 5px;"><strong><a href="stock_lookup_news.php?q=V&amp;type=epsrelated">See More</a></strong></li>
+</ul>
+<ul id="content_eg" style="display:none">
+<li style="border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-top: 5px; "><a href="news.php?id=12799814">Visa (V): Solid Growth Helped By Easter Timing - Jefferies</a><br /><span style="color:#888">April 21, 2017 7:28 AM</span></li>
+<li style="border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-top: 5px; "><a href="news.php?id=12798251">Visa's profit boosted by Europe unit, big card portfolio wins</a><br /><span style="color:#888">April 20, 2017 4:19 PM</span></li>
+<li style="border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-top: 5px; "><a href="news.php?id=12798044">Visa (V) Tops Q2 EPS by 7c, $5B Buyback Plan</a><br /><span style="color:#888">April 20, 2017 4:06 PM</span></li>
+<li style="border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-top: 5px; "><a href="news.php?id=12495235">Visa (V): New CEO Brings Best Quarter In a While - Jefferies</a><br /><span style="color:#888">February 3, 2017 7:32 AM</span></li>
+<li style="border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-top: 5px; "><a href="news.php?id=12492699">UPDATE: Visa (V) Reports Strong Q1 Results </a><br /><span style="color:#888">February 2, 2017 5:45 PM</span></li>
+<li style="margin-top: 5px;"><strong><a href="stock_lookup_news.php?q=V&amp;type=eg">See More</a></strong></li>
+</ul>
+</div></div>
+</div>
+
+<script type="text/javascript">
+var showMore = function()
+{
+	var hist = $jq('#history_extra');
+	if ( hist.css('display') == 'none' ) {
+		hist.show();
+		$jq('#expandbtn').val('Collapse Table');
+	} else {
+		hist.hide();
+		$jq('#expandbtn').val('Expand Table');
+	}
+	return false;
+};
+</script>
+
+<!--START Ad Space -->
+<div id="ad_space">
+<img src="/images/ad_sipremium.gif" alt="" width="240" height="90" onClick="location.href = 'premium_content.php'; return false" />
+<div class="ad">
+</div>
+</div>
+
+<!--END Ad Space -->
+
+<div id="footer">
+<div class="quote">
+<!-- START Cart Bar -->
+<div class="login">
+
+<!--&nbsp;-->
+</div>
+</form>
+<br />
+<div class="rss" onClick="location.href = 'freefeed.php'; return false"><div>&nbsp;</div><h5>Free News Feed</h5>Get our RSS Feed!</div>
+</div>
+
+<div class="copy">
+&copy; Copyright 2017 StreetInsider.com
+</div>
+
+<div class="links">
+<dl>
+<dt><a href="index.php">Home</a></dt>
+<dt><a href="login.php?members=true">Member's Home</a></dt>
+<dt><a href="premium_content.php">Premium Content</a></dt>
+</dl>
+<dl>
+<dt><a href="links.php">Links</a></dt>
+<dt><a href="entities.php">Entities</a></dt>
+<dt><a href="about.php">About StreetInsider</a></dt>
+<dt><a href="signup_content.php">Get Our Content</a></dt>
+</dl>
+<dl>
+<dt><a href="signup_advertise.php">Advertise with Us</a></dt>
+<dt><a href="contact.php">Contact Us</a></dt>
+<dt><a href="disclaimer.php">Disclaimer</a></dt>
+<dt><a href="privacy.php">Privacy Policy</a></dt>
+</dl>
+</div>
+
+
+</div>
 
 <!-- Start Quantcast tag -->
 <script type="text/javascript" src="//edge.quantserve.com/quant.js"></script>
@@ -214,12 +912,19 @@ _qacct="p-10HO819ww3FLg";quantserve();</script>
 <img src="//pixel.quantserve.com/pixel/p-10HO819ww3FLg.gif" style="display: none" height="1" width="1" alt="Quantcast"/></noscript>
 <!-- End Quantcast tag -->
 
+
 </div>
 <img id="container_btm" src="/images/body_btm.png" alt="" width="1000" height="3" />
 </div>
 
+
 <script type="text/javascript">
-document.write('<img width="0" height="0" src="t.p' + 'hp?self=%2Finterrupt_block.php&qs=" />');
+document.write('<img width="0" height="0" src="t.p' + 'hp?self=%2Fec_earnings.php&qs=q%3DV" />');
 </script>
+
+
+
+
+
 </body>
 </html>
