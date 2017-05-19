@@ -473,10 +473,10 @@ div.middleads div {
 
 <div style="margin-bottom: 10px;">
 	<h3>V Financial Facts</h3>
-	Other revenues: 218M<br />Marketing: 300M<br />	<strong><a href="stock_lookup.php?q=V&amp;financials=income">See Full Income Statement</a></strong>
+	Income tax provision: 579M<br />Diluted earnings per share (Note 8): 1.32<br />	<strong><a href="stock_lookup.php?q=V&amp;financials=income">See Full Income Statement</a></strong>
 	<br /><br />
 
-	Settlement receivable: -889M<br />Cash and cash equivalents: -29.05B<br />	<strong><a href="stock_lookup.php?q=V&amp;financials=balance">See Full Balance Sheet</a></strong>
+	Accounts payable: -120M<br />Accrued liabilities: -1.82B<br />	<strong><a href="stock_lookup.php?q=V&amp;financials=balance">See Full Balance Sheet</a></strong>
 </div>
 
 <div>
