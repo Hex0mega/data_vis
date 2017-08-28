@@ -1,0 +1,30 @@
+MongoDB Documentation
+
+
+(1) Import csv file into MongoDB
+
+mongoimport --db users --collection contacts --type csv --headerline --file /opt/backups/contacts.csv
+
+Example:
+mongoimport --db transfers --collection transfers --type csv --headerline --file ./"././EPL Soccer Transfers.csv"
+
+(2) Start mongod process in background
+
+sudo mongod --dbpath /data/db/ & bg
+
+(3) Run mongo
+
+mongo 
+
+(4) Useful MongoDB commands
+
+show dbs
+use dbname
+show collections
+db.collectionName.find()
+
+
+
+ 
+ 
+ 
