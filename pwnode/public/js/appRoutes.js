@@ -13,6 +13,12 @@
         .when('/epl', {
             templateUrl: 'views/epl.html',
             controller: 'EPLController'
+        })
+        
+        //about page that will use the AboutController
+        .when('/about', {
+            templateUrl: 'views/about.html',
+            controller: 'AboutController'
         });
 
     $locationProvider.html5Mode(true);

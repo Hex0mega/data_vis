@@ -1,4 +1,3 @@
-// public/js/services/EPLService.js
 angular.module('EPLService', []).factory('EPL', ['$http', function($http) {
 
     return {
