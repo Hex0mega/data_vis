@@ -23,6 +23,8 @@ use dbname
 show collections
 db.collectionName.find()
 
+(5) db._adminCommand({getCmdLineOpts:1})
+
 
 
  
