@@ -10,7 +10,7 @@ mongoimport --db transfers --collection transfers --type csv --headerline --file
 
 (2) Start mongod process in background
 
-sudo mongod --dbpath /data/db/ &
+sudo mongod --fork --dbpath /data/db/
 
 (3) Run mongo
 
